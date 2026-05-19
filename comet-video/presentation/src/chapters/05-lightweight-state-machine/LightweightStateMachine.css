@@ -1,0 +1,296 @@
+.sm-scene {
+  font-family: var(--font-display-cn);
+  color: var(--text);
+}
+
+.sm-topline {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+
+.sm-topline h1 {
+  margin: 14px 0 0;
+  max-width: 1280px;
+  font-size: 78px;
+  line-height: 1.02;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.sm-code {
+  padding-top: 8px;
+  color: var(--accent);
+  text-align: right;
+}
+
+.sm-bound-state,
+.sm-yaml-focus,
+.sm-yaml-wide,
+.sm-scripted,
+.sm-script-layout,
+.sm-two-scripts,
+.sm-archive {
+  flex: 1;
+  display: grid;
+  align-items: center;
+  gap: 42px;
+}
+
+.sm-bound-state {
+  grid-template-columns: 0.9fr 120px 1fr;
+}
+
+.sm-yaml-focus,
+.sm-yaml-wide,
+.sm-scripted,
+.sm-script-layout {
+  grid-template-columns: 1fr 1fr;
+}
+
+.sm-two-scripts {
+  grid-template-columns: 1fr 1fr;
+}
+
+.sm-change-card,
+.sm-context-note,
+.sm-status-meter,
+.sm-scripted-rule,
+.sm-hard-stop {
+  min-height: 420px;
+  padding: 48px;
+  display: grid;
+  align-content: center;
+}
+
+.sm-change-card strong,
+.sm-context-note strong,
+.sm-status-meter strong,
+.sm-scripted-rule strong,
+.sm-hard-stop strong {
+  display: block;
+  margin-top: 24px;
+  font-size: 56px;
+  line-height: 1.04;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.sm-change-card p,
+.sm-context-note p,
+.sm-status-meter p,
+.sm-scripted-rule p,
+.sm-hard-stop p {
+  margin: 30px 0 0;
+  font-size: 30px;
+  line-height: 1.28;
+  color: var(--text-2);
+}
+
+.sm-link-line {
+  height: 4px;
+  background: var(--accent);
+}
+
+.sm-yaml {
+  min-height: 430px;
+  padding: 38px;
+  display: grid;
+  align-content: center;
+  gap: 16px;
+}
+
+.sm-yaml-row {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 18px;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 18px;
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+}
+
+.sm-yaml-row b {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.sm-yaml-row span {
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sm-phase-map {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.sm-phase-map div {
+  min-height: 310px;
+  padding: 30px 22px;
+  border: 1px solid var(--rule);
+  border-radius: 30px;
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+  display: grid;
+  align-items: end;
+  font-family: var(--font-display-en);
+  font-size: 30px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.sm-phase-map div.is-active {
+  border: 4px solid var(--accent);
+  color: var(--accent);
+}
+
+.sm-script-card {
+  min-height: 520px;
+  padding: 44px;
+}
+
+.sm-script-card.is-active {
+  border: 4px solid var(--accent);
+}
+
+.sm-script-card strong {
+  display: block;
+  margin-top: 22px;
+  font-family: var(--font-mono);
+  font-size: 42px;
+  line-height: 1.05;
+  color: var(--accent);
+}
+
+.sm-script-items {
+  display: grid;
+  gap: 14px;
+  margin-top: 54px;
+}
+
+.sm-script-items em {
+  display: block;
+  padding: 16px 18px;
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 20px;
+  color: var(--text-2);
+}
+
+.sm-archive {
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+}
+
+.sm-archive-step {
+  min-height: 340px;
+  padding: 34px 28px;
+}
+
+.sm-archive-step strong {
+  display: block;
+  margin-top: 120px;
+  font-family: var(--font-display-en);
+  font-size: 34px;
+  line-height: 1.04;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.sm-dry-run {
+  position: absolute;
+  right: 0;
+  bottom: 26px;
+  padding: 18px 28px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--surface);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.sm-topline h1,
+.sm-change-card,
+.sm-context-note,
+.sm-status-meter,
+.sm-scripted-rule,
+.sm-hard-stop,
+.sm-script-card,
+.sm-dry-run {
+  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
+}
+
+.sm-code {
+  animation: comet-type 760ms var(--ease-quart) both;
+}
+
+.sm-link-line {
+  transform-origin: left;
+  animation: comet-line-x 860ms var(--ease-expo) both;
+}
+
+.sm-yaml-row,
+.sm-phase-map div,
+.sm-script-items em,
+.sm-archive-step {
+  animation: comet-rise-strong var(--dur-slow) var(--ease-expo) both;
+}
+
+.sm-yaml-row {
+  background-image: linear-gradient(
+    100deg,
+    var(--surface) 0%,
+    var(--surface-3) 46%,
+    var(--surface) 88%
+  );
+  background-size: 220% 100%;
+  animation-name: comet-scan;
+}
+
+.sm-yaml-row:nth-child(2),
+.sm-phase-map div:nth-child(2),
+.sm-script-items em:nth-child(2),
+.sm-archive-step:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.sm-yaml-row:nth-child(3),
+.sm-phase-map div:nth-child(3),
+.sm-script-items em:nth-child(3),
+.sm-archive-step:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.sm-yaml-row:nth-child(4),
+.sm-phase-map div:nth-child(4),
+.sm-script-items em:nth-child(4),
+.sm-archive-step:nth-child(4) {
+  animation-delay: 240ms;
+}
+
+.sm-yaml-row:nth-child(5),
+.sm-script-items em:nth-child(5) {
+  animation-delay: 320ms;
+}
+
+.sm-yaml-row:nth-child(6) {
+  animation-delay: 400ms;
+}
+
+.sm-phase-map div.is-active,
+.sm-script-card.is-active,
+.sm-dry-run {
+  animation-name: comet-pop;
+}

@@ -1,0 +1,335 @@
+.ir-scene {
+  font-family: var(--font-display-cn);
+  color: var(--text);
+}
+
+.ir-topline {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+
+.ir-topline h1 {
+  margin: 14px 0 0;
+  max-width: 1280px;
+  font-size: 78px;
+  line-height: 1.02;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.ir-code {
+  padding-top: 8px;
+  color: var(--accent);
+  text-align: right;
+}
+
+.ir-install,
+.ir-init,
+.ir-deploy,
+.ir-platforms,
+.ir-route,
+.ir-tweak {
+  flex: 1;
+  display: grid;
+  align-items: center;
+  gap: 42px;
+}
+
+.ir-install,
+.ir-init,
+.ir-deploy,
+.ir-platforms,
+.ir-tweak {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ir-terminal,
+.ir-install-note,
+.ir-image-card,
+.ir-tweak-list,
+.ir-platform-note {
+  padding: 42px;
+}
+
+.ir-command-line {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  align-items: center;
+  min-height: 86px;
+  padding: 0 24px;
+  border: 1px solid var(--rule);
+  border-radius: 22px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+}
+
+.ir-command-line + .ir-command-line {
+  margin-top: 18px;
+}
+
+.ir-command-line span {
+  color: var(--text-mute);
+}
+
+.ir-command-line b {
+  color: var(--text);
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.ir-install-note {
+  min-height: 410px;
+  display: grid;
+  align-content: center;
+}
+
+.ir-install-note strong,
+.ir-platform-note strong {
+  display: block;
+  margin-top: 24px;
+  font-size: 58px;
+  line-height: 1.04;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.ir-install-note p,
+.ir-platform-note p {
+  margin: 30px 0 0;
+  font-size: 30px;
+  line-height: 1.28;
+  color: var(--text-2);
+}
+
+.ir-image-card {
+  overflow: hidden;
+}
+
+.ir-image-card img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  border-radius: 18px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.ir-image-card.is-small img {
+  max-height: 500px;
+}
+
+.ir-image-card.is-skill img {
+  max-height: 460px;
+}
+
+.ir-init-list {
+  display: grid;
+  gap: 22px;
+}
+
+.ir-init-row {
+  min-height: 136px;
+  padding: 28px 32px;
+}
+
+.ir-init-row strong {
+  display: block;
+  margin-top: 22px;
+  font-size: 36px;
+  font-weight: 900;
+}
+
+.ir-deploy-steps {
+  display: grid;
+  gap: 18px;
+}
+
+.ir-deploy-row {
+  min-height: 82px;
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  align-items: center;
+  padding: 0 28px;
+  border: 1px solid var(--rule);
+  border-radius: 24px;
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+}
+
+.ir-deploy-row strong {
+  font-family: var(--font-mono);
+  font-size: 24px;
+}
+
+.ir-platform-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.ir-platform-grid span {
+  display: block;
+  padding: 16px 18px;
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  background: var(--surface-2);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--text);
+}
+
+.ir-platform-note {
+  min-height: 430px;
+  display: grid;
+  align-content: center;
+}
+
+.ir-route {
+  grid-template-columns: 1.12fr repeat(4, 1fr);
+  position: relative;
+}
+
+.ir-shortcut-label {
+  min-height: 300px;
+  padding: 34px 28px;
+  border: 4px solid var(--accent);
+}
+
+.ir-shortcut-label strong {
+  display: block;
+  margin-top: 108px;
+  font-family: var(--font-mono);
+  font-size: 30px;
+  color: var(--accent);
+}
+
+.ir-route-node {
+  position: relative;
+  min-height: 300px;
+  padding: 34px 28px;
+}
+
+.ir-shortcut-label::after,
+.ir-route-node:not(:last-of-type)::after {
+  content: "";
+  position: absolute;
+  right: -42px;
+  top: 50%;
+  width: 42px;
+  height: 4px;
+  background: var(--accent);
+}
+
+.ir-route-node strong {
+  display: block;
+  margin-top: 116px;
+  font-family: var(--font-display-en);
+  font-size: 38px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.ir-route-caption {
+  position: absolute;
+  right: 0;
+  bottom: 40px;
+  width: 460px;
+  border-top: 4px solid var(--accent);
+  padding-top: 18px;
+}
+
+.ir-route-caption p {
+  margin: 10px 0 0;
+  font-size: 30px;
+  color: var(--text-2);
+}
+
+.ir-tweak-list {
+  display: grid;
+  gap: 18px;
+}
+
+.ir-tweak-list .label-mono {
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.ir-tweak-list strong {
+  display: block;
+  padding: 24px 26px;
+  border-radius: 22px;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 34px;
+  font-weight: 900;
+}
+
+.ir-topline h1,
+.ir-install-note,
+.ir-platform-note,
+.ir-shortcut-label,
+.ir-route-caption {
+  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
+}
+
+.ir-code {
+  animation: comet-type 760ms var(--ease-quart) both;
+}
+
+.ir-command-line,
+.ir-init-row,
+.ir-deploy-row,
+.ir-platform-grid span,
+.ir-route-node,
+.ir-tweak-list strong {
+  animation: comet-rise-strong var(--dur-slow) var(--ease-expo) both;
+}
+
+.ir-command-line b {
+  animation: comet-type 820ms var(--ease-quart) both;
+}
+
+.ir-command-line:nth-child(2),
+.ir-init-row:nth-child(2),
+.ir-deploy-row:nth-child(2),
+.ir-platform-grid span:nth-child(2),
+.ir-route-node:nth-of-type(2),
+.ir-tweak-list strong:nth-of-type(2) {
+  animation-delay: 90ms;
+}
+
+.ir-command-line:nth-child(3),
+.ir-init-row:nth-child(3),
+.ir-deploy-row:nth-child(3),
+.ir-platform-grid span:nth-child(3),
+.ir-route-node:nth-of-type(3),
+.ir-tweak-list strong:nth-of-type(3) {
+  animation-delay: 180ms;
+}
+
+.ir-platform-grid span:nth-child(4),
+.ir-route-node:nth-of-type(4),
+.ir-tweak-list strong:nth-of-type(4) {
+  animation-delay: 270ms;
+}
+
+.ir-platform-grid span:nth-child(5) {
+  animation-delay: 360ms;
+}
+
+.ir-image-card {
+  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
+}
+
+.ir-image-card img {
+  animation: comet-soft-zoom 900ms var(--ease-expo) both;
+}
+
+.ir-shortcut-label::after,
+.ir-route-node:not(:last-of-type)::after {
+  transform-origin: left;
+  animation: comet-line-x 800ms var(--ease-expo) both;
+}

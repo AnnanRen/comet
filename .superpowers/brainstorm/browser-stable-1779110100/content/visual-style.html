@@ -1,0 +1,121 @@
+<h2>Comet Remotion 改版方向</h2>
+<p class="subtitle">目标：更适合 B 站传播，但保持品牌发布片质感。白底、留白、克制动效、信息更高级。</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">A. 轻科技发布风</div>
+        <div class="mockup-body" style="background:#ffffff;padding:24px;display:flex;flex-direction:column;gap:18px;">
+          <div style="font-size:12px;letter-spacing:1.6px;color:#6b7280;text-transform:uppercase;">Comet Workflow</div>
+          <div style="font-size:34px;font-weight:800;color:#111827;line-height:1.15;">OpenSpec + Superpowers<br>双星工作流</div>
+          <div style="height:12px;width:180px;background:#e5e7eb;border-radius:999px;"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:#f8fafc;border:1px solid #dbeafe;border-radius:18px;padding:14px;">
+              <div style="width:36px;height:36px;border-radius:12px;background:#dbeafe;margin-bottom:10px;"></div>
+              <div style="height:10px;background:#cbd5e1;border-radius:999px;width:70%;margin-bottom:8px;"></div>
+              <div style="height:8px;background:#e2e8f0;border-radius:999px;width:90%;"></div>
+            </div>
+            <div style="background:#f8fafc;border:1px solid #d1fae5;border-radius:18px;padding:14px;">
+              <div style="width:36px;height:36px;border-radius:12px;background:#d1fae5;margin-bottom:10px;"></div>
+              <div style="height:10px;background:#cbd5e1;border-radius:999px;width:65%;margin-bottom:8px;"></div>
+              <div style="height:8px;background:#e2e8f0;border-radius:999px;width:85%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>轻科技发布风</h3>
+      <p>蓝青点缀，像效率工具产品片，最稳妥、最通用，也最容易保留 Comet 的技术感。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">B. 品牌发布风</div>
+        <div class="mockup-body" style="background:#ffffff;padding:30px;display:flex;flex-direction:column;justify-content:space-between;min-height:280px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div style="font-size:12px;letter-spacing:2px;color:#9ca3af;text-transform:uppercase;">Comet</div>
+              <div style="font-size:40px;font-weight:800;color:#111827;line-height:1.08;margin-top:10px;">From idea<br>to archive</div>
+            </div>
+            <div style="width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,#111827 0%,#4b5563 100%);opacity:0.92;"></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;">
+            <div style="height:2px;background:#111827;flex:1;"></div>
+            <div style="font-size:13px;color:#6b7280;">white / minimal / premium</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+            <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:18px;padding:12px;">
+              <div style="font-size:11px;color:#9ca3af;margin-bottom:12px;">OPEN</div>
+              <div style="height:10px;background:#d1d5db;border-radius:999px;width:80%;margin-bottom:6px;"></div>
+              <div style="height:8px;background:#e5e7eb;border-radius:999px;width:95%;"></div>
+            </div>
+            <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:18px;padding:12px;">
+              <div style="font-size:11px;color:#9ca3af;margin-bottom:12px;">BUILD</div>
+              <div style="height:10px;background:#d1d5db;border-radius:999px;width:76%;margin-bottom:6px;"></div>
+              <div style="height:8px;background:#e5e7eb;border-radius:999px;width:92%;"></div>
+            </div>
+            <div style="background:#111827;border:1px solid #111827;border-radius:18px;padding:12px;">
+              <div style="font-size:11px;color:#d1d5db;margin-bottom:12px;">VERIFY</div>
+              <div style="height:10px;background:#ffffff;border-radius:999px;width:74%;margin-bottom:6px;opacity:0.92;"></div>
+              <div style="height:8px;background:#9ca3af;border-radius:999px;width:90%;opacity:0.6;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>品牌发布风</h3>
+      <p>大留白、黑灰主导、少量点色，像官网发布片。气质最好，也最符合你刚选的方向。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">C. 轻杂志叙事风</div>
+        <div class="mockup-body" style="background:#fffdf8;padding:24px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:18px;">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="font-size:12px;letter-spacing:1.8px;color:#a16207;text-transform:uppercase;">Editorial Story</div>
+            <div style="font-size:36px;font-weight:800;color:#1f2937;line-height:1.1;">Rebuilding the AI dev workflow</div>
+            <div style="height:8px;background:#fde68a;border-radius:999px;width:54%;"></div>
+            <div style="height:8px;background:#e5e7eb;border-radius:999px;width:88%;"></div>
+            <div style="height:8px;background:#e5e7eb;border-radius:999px;width:81%;"></div>
+          </div>
+          <div style="background:#fef3c7;border-radius:22px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;">
+            <div style="font-size:58px;font-weight:800;color:#92400e;line-height:1;">5</div>
+            <div style="font-size:14px;color:#78350f;">stages automated pipeline</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>轻杂志叙事风</h3>
+      <p>更像专题片和长文封面，辨识度高，但和当前 CLI/工具产品定位有一点距离。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>我推荐 B</h4>
+      <ul>
+        <li>最符合你要的“品牌发布风”</li>
+        <li>能把现在偏黑客感的 Remotion 视频提到更高级的产品展示气质</li>
+        <li>白底更适合 B 站封面截帧、暂停阅读和字幕叠加</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>需要同步调整</h4>
+      <ul>
+        <li>把现有黑底场景全部重构为白底层级</li>
+        <li>减少 emoji 和大面积发光效果</li>
+        <li>把 ASCII Logo 改成更干净的品牌型开场</li>
+      </ul>
+    </div>
+  </div>
+</div>

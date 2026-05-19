@@ -1,0 +1,43 @@
+现有问题
+对于OpenSpec
+OpenSpec自带了Spec的管理，分为激活中的Spec和以归档的Spec，但使用过程中OpenSpec的提案、Task没有Superpowers的头脑风暴那样细致
+
+对于Superpowers
+Superpowers在头脑风暴后会产出Spec文档，但这个文档通常是没有进行状态化设计的，也就是说做完了一次需求之后Spec仅在文档上对Task进行打勾，甚至有时候Agent还会忘记打勾，造成下一次断点开始的时候，Agent需要重新查看文档和项目代码，来进行核验，探索项目造成较多的Token浪费
+
+Comet是什么
+Comet是我深度使用OpenSpec和Superpowers之后，组合两者的核心功能开发出来的Skill。
+
+OpenSpec很适合管理需求、做提案、管理Spec生命周期和归档
+
+Superpowers则很适合做头脑风暴、深度设计、TDD执行
+
+Comet合并了两者的强项让核心流程整合为5个阶段
+
+comet-open(调用OpenSpec)->comet-design(将OpenSpec产出物总结，交给Superpowers细化)->comet-build(Superpowers TDD开发)->comet-verify(OpenSepc验证，Superpowers收尾，OpenSpec和Superpowers Spec双向关联)->comet-archive(OpenSpec归档，Superpowers Spec归档)
+
+主入口/comet支持当前Spec状态检测，适用于长任务，中途完成了一半(关闭了CC之后)，回来之后想要继续任务，只需要/comet 继续，comet会自动读取当前活跃的Spec，如果存在多个则会列出来，并且动态识别当前Spec执行到哪个步骤了，继续往下执行
+
+Comet轻量状态机机制
+comet提供了一个.comet.yaml，于OpenSpec change进行绑定，即每个需求都有一个yaml
+其格式样例如下
+
+workflow: full
+phase: build
+design_doc: docs/superpowers/specs/YYYY-MM-DD-topic-design.md
+plan: docs/superpowers/plans/YYYY-MM-DD-feature.md
+build_mode: subagent-driven-development
+isolation: branch
+verify_mode: light
+verify_result: pending
+verified_at: null
+archived: false
+其中所有的状态，运行阶段都采用脚本更新，且能够检验每个阶段是否真实完成任务，达到条件之后才会退出当前阶段，执行更新状态动作。相比于将复杂的状态管理机制记录在Skill中，脚本的方式强保障了核心状态扭转的可靠性，yaml文件的正确性，以及断点恢复的便捷，Agent只需要通过comet内置命令进行状态读取就能够知道当前Spec所处的情况
+
+在项目中能学到什么
+现有的Skill市场中有非常多的出名的Skill，但普遍会存在偏好性问题，有的Skill可能用户只喜欢部分功能，比如我同时使用OpenSpec和Superpowers，经常用到的是OpenSpec的Spec管理能力，而编码上，更喜欢用Superpowers的TDD驱动编码。
+
+长期使用Skill的人都知道，这些一定是能够自有组合的，但当我们想组合这些高star项目时，具体怎么做依然是需要真正的实践。
+比如如何稳定的触发嵌套的Skill，而不是让Agent依靠文档描述，做了看着像触发了Skill的操作(比如根据你的Skill描述写了文件)，但实际上没有触发Skill(核心特征CC上并没有触发Skill的打印)，像Comet中会触发很多来自于OpenSpec和Superpowers的能力，这段Prompt应该怎么写？
+
+再比如，如何让组合的Skill能够多阶段自动流转，而不是靠人工介入，Comet的5阶段流程，除了必要的用户选择项以外，其核心流程是能够自动进行Skill触发的，同时状态机机制也能够很好的保障状态扭转

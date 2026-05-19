@@ -1,0 +1,329 @@
+.fs-scene {
+  font-family: var(--font-display-cn);
+  color: var(--text);
+}
+
+.fs-topline {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+
+.fs-topline h1 {
+  margin: 14px 0 0;
+  max-width: 1280px;
+  font-size: 80px;
+  line-height: 1.02;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.fs-code {
+  padding-top: 8px;
+  color: var(--accent);
+  text-align: right;
+}
+
+.fs-map {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.fs-phase-card {
+  position: relative;
+  min-height: 430px;
+  padding: 34px 28px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.fs-phase-card:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  z-index: 2;
+  width: 22px;
+  height: 4px;
+  background: var(--accent);
+}
+
+.fs-phase-card.is-active {
+  border: 4px solid var(--accent);
+}
+
+.fs-phase-card.is-compact {
+  min-height: 300px;
+}
+
+.fs-phase-card strong {
+  display: block;
+  margin-top: 88px;
+  font-family: var(--font-display-en);
+  font-size: 38px;
+  line-height: 1;
+  font-weight: 900;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.fs-phase-card em {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.fs-phase-card small {
+  display: block;
+  margin-top: 28px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.fs-output-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.fs-output-list span {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  font-size: 18px;
+  color: var(--text-2);
+}
+
+.fs-focus-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 0.78fr 1.22fr;
+  gap: 54px;
+  align-items: center;
+}
+
+.fs-focus-left .fs-phase-card {
+  min-height: 560px;
+}
+
+.fs-focus-left .fs-phase-card strong {
+  font-size: 62px;
+}
+
+.fs-focus-left .fs-phase-card em {
+  font-size: 20px;
+}
+
+.fs-focus-right {
+  display: grid;
+  gap: 28px;
+}
+
+.fs-owner-card {
+  min-height: 220px;
+  padding: 38px 42px;
+}
+
+.fs-owner-card strong {
+  display: block;
+  margin-top: 18px;
+  font-family: var(--font-display-en);
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.fs-owner-card p {
+  margin: 22px 0 0;
+  max-width: 760px;
+  font-size: 30px;
+  line-height: 1.28;
+  color: var(--text-2);
+}
+
+.fs-artifacts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.fs-artifact {
+  min-height: 160px;
+  padding: 26px 24px;
+  border: 1px solid var(--rule);
+  border-radius: 28px;
+  background: var(--accent-soft);
+}
+
+.fs-artifact span {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.fs-artifact b {
+  display: block;
+  margin-top: 52px;
+  font-size: 25px;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+.fs-not-done {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.fs-stop-card {
+  min-height: 360px;
+  padding: 44px;
+  opacity: 0.68;
+}
+
+.fs-stop-card.is-right {
+  min-height: 470px;
+  opacity: 1;
+  border: 4px solid var(--accent);
+}
+
+.fs-stop-card strong {
+  display: block;
+  margin-top: 98px;
+  font-family: var(--font-display-en);
+  font-size: 56px;
+  line-height: 1.02;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.fs-stop-card.is-right strong {
+  color: var(--accent);
+  font-size: 64px;
+}
+
+.fs-loop {
+  position: relative;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.fs-loop-node {
+  min-height: 220px;
+  padding: 28px 24px;
+  border: 1px solid var(--rule);
+  border-radius: 32px;
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+}
+
+.fs-loop-node strong {
+  display: block;
+  margin-top: 80px;
+  font-family: var(--font-display-en);
+  font-size: 32px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.fs-loop-core {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  width: 500px;
+  padding: 28px 36px;
+  border-radius: 999px;
+  border: 4px solid var(--accent);
+  background: var(--surface-2);
+  box-shadow: var(--card-shadow);
+  text-align: center;
+}
+
+.fs-loop-core b {
+  display: block;
+  margin-top: 8px;
+  font-size: 34px;
+  color: var(--accent);
+}
+
+.fs-topline h1,
+.fs-owner-card,
+.fs-stop-card,
+.fs-loop-core {
+  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
+}
+
+.fs-code {
+  animation: comet-type 760ms var(--ease-quart) both;
+}
+
+.fs-phase-card,
+.fs-artifact,
+.fs-loop-node {
+  animation: comet-rise-strong var(--dur-slow) var(--ease-expo) both;
+}
+
+.fs-phase-card:nth-child(2),
+.fs-artifact:nth-child(2),
+.fs-loop-node:nth-child(2) {
+  animation-delay: 90ms;
+}
+
+.fs-phase-card:nth-child(3),
+.fs-artifact:nth-child(3),
+.fs-loop-node:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.fs-phase-card:nth-child(4),
+.fs-loop-node:nth-child(4) {
+  animation-delay: 270ms;
+}
+
+.fs-phase-card:nth-child(5),
+.fs-loop-node:nth-child(5) {
+  animation-delay: 360ms;
+}
+
+.fs-phase-card:not(:last-child)::after {
+  transform-origin: left;
+  animation: comet-line-x 760ms var(--ease-expo) both;
+}
+
+.fs-output-list span {
+  animation: comet-scan 820ms var(--ease-quart) both;
+  background-image: linear-gradient(
+    100deg,
+    var(--surface) 0%,
+    var(--surface-3) 42%,
+    var(--surface) 84%
+  );
+  background-size: 220% 100%;
+}
+
+.fs-loop-core {
+  animation-name: comet-pop;
+}
