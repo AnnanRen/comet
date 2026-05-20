@@ -1,5 +1,7 @@
+import { useRef } from "react";
 import type { ChapterStepProps } from "../../registry/types";
 import { HighlightedTitle } from "../../components/HighlightedTitle";
+import { useSceneAnimations } from "../../hooks/useSceneAnimations";
 import "./RealProblem.css";
 
 const lifecycle = [
@@ -92,6 +94,9 @@ function SceneShell({
 }
 
 export default function RealProblem({ step }: ChapterStepProps) {
+  const sceneRef = useRef<HTMLDivElement>(null);
+  useSceneAnimations(sceneRef);
+
   if (step === 0) {
     return (
       <SceneShell
@@ -99,8 +104,8 @@ export default function RealProblem({ step }: ChapterStepProps) {
         kicker="OPENSPEC + SUPERPOWERS WORKFLOW"
         title="让 AI 长任务，真的能接着做"
       >
-        <div className="rp-comet-intro">
-          <div className="rp-comet-core">
+        <div className="rp-comet-intro" ref={sceneRef}>
+          <div className="rp-comet-core" data-animate="scale-in">
             <span className="label-mono">core idea</span>
             <strong>COMET</strong>
             <p>把 OpenSpec 和 Superpowers 最好用的部分结合在一起。</p>
@@ -108,17 +113,17 @@ export default function RealProblem({ step }: ChapterStepProps) {
             <div className="rp-comet-repo label-mono">github.com/rpamis/comet</div>
           </div>
           <div className="rp-principle-map">
-            <div className="rp-principle-card card is-what">
+            <div className="rp-principle-card card is-what" data-animate="slide-left">
               <span className="label-mono">WHAT</span>
               <strong>OpenSpec</strong>
               <p>保留 Spec 管理、proposal、归档这套长处。</p>
             </div>
-            <div className="rp-principle-card card is-how">
+            <div className="rp-principle-card card is-how" data-animate="slide-left">
               <span className="label-mono">HOW</span>
               <strong>Superpowers</strong>
               <p>保留头脑风暴、深度设计、计划和验证。</p>
             </div>
-            <div className="rp-combine-column">
+            <div className="rp-combine-column" data-animate="pop">
               <div className="rp-principle-line is-top" />
               <div className="rp-principle-line is-bottom" />
               <div className="rp-combine-node card">
@@ -128,7 +133,7 @@ export default function RealProblem({ step }: ChapterStepProps) {
               </div>
               <div className="rp-principle-line is-out" />
             </div>
-            <div className="rp-state-rail card">
+            <div className="rp-state-rail card" data-animate="slide-right">
               {["open", "design", "build", "verify", "archive"].map((item) => (
                 <span key={item}>{item}</span>
               ))}
@@ -146,10 +151,10 @@ export default function RealProblem({ step }: ChapterStepProps) {
         kicker="WHAT IS STABLE"
         title="Spec 生命周期已经清楚"
       >
-        <div className="rp-lifecycle">
+        <div className="rp-lifecycle" ref={sceneRef}>
           <RailLabel>OpenSpec</RailLabel>
           {lifecycle.map((item, idx) => (
-            <div className="rp-life-item card" key={item.title}>
+            <div className="rp-life-item card" key={item.title} data-animate="flip-in">
               <div className="rp-life-head">
                 <span className="rp-index label-mono">0{idx + 1}</span>
                 <b className="label-mono">{item.meta}</b>
@@ -159,7 +164,7 @@ export default function RealProblem({ step }: ChapterStepProps) {
               <code>{item.file}</code>
             </div>
           ))}
-          <div className="rp-life-summary card">
+          <div className="rp-life-summary card" data-animate="blur-in">
             <span className="label-mono">ARTICLE CUE</span>
             <p>激活中的 Spec 与已归档 Spec，是 OpenSpec 的强项。</p>
           </div>
@@ -173,27 +178,27 @@ export default function RealProblem({ step }: ChapterStepProps) {
       <SceneShell
         code="OPENSPEC / DESIGN GAP"
         kicker="WHERE IT GETS THIN"
-        title="“要做什么”不等于“怎么做”"
+        title=""要做什么"不等于"怎么做""
       >
-        <div className="rp-gap-grid">
-          <div className="rp-stack-card card">
+        <div className="rp-gap-grid" ref={sceneRef}>
+          <div className="rp-stack-card card" data-animate="slide-left">
             <RailLabel>Artifacts</RailLabel>
             {gaps.slice(0, 2).map((item) => (
               <BlueprintNode key={item} label={item} active />
             ))}
           </div>
-          <div className="rp-gap-arrow">
+          <div className="rp-gap-arrow" data-animate="pop">
             <span />
             <b>?</b>
           </div>
-          <div className="rp-stack-card card is-warning">
+          <div className="rp-stack-card card is-warning" data-animate="slide-right">
             <RailLabel>Engineering detail</RailLabel>
             {gaps.slice(2).map((item) => (
               <BlueprintNode key={item} label={item} active />
             ))}
           </div>
         </div>
-        <p className="rp-bottom-caption">
+        <p className="rp-bottom-caption" data-animate="blur-in">
           需求已经立住，但工程设计阶段仍然需要补方案判断。
         </p>
       </SceneShell>
@@ -207,16 +212,16 @@ export default function RealProblem({ step }: ChapterStepProps) {
         kicker="HOW GETS DETAILED"
         title="Superpowers 把实现链路拉细"
       >
-        <div className="rp-powers">
+        <div className="rp-powers" ref={sceneRef}>
           {powers.map((item, idx) => (
-            <div className="rp-power-step" key={item}>
+            <div className="rp-power-step" key={item} data-animate="rise">
               <div className="rp-power-num hero-num">{idx + 1}</div>
               <strong>{item}</strong>
               <div className="rp-power-bar" />
             </div>
           ))}
         </div>
-        <div className="rp-equation card">
+        <div className="rp-equation card" data-animate="blur-in">
           <span className="label-mono">HOW</span>
           <p>澄清需求 → 深度设计 → 实现计划 → TDD 执行 → 验证收尾</p>
         </div>
@@ -231,10 +236,10 @@ export default function RealProblem({ step }: ChapterStepProps) {
         kicker="THE MISSING STATE"
         title="文档可读，不代表状态可靠"
       >
-        <div className="rp-markdown-board card">
+        <div className="rp-markdown-board card" ref={sceneRef}>
           <div className="rp-md-lines">
             {markdown.map((line, idx) => (
-              <code key={line} className={idx === 2 ? "is-alert" : ""}>
+              <code key={line} className={idx === 2 ? "is-alert" : ""} data-animate="blur-in">
                 {line}
               </code>
             ))}
@@ -242,7 +247,7 @@ export default function RealProblem({ step }: ChapterStepProps) {
           <div className="rp-md-meter">
             <span className="label-mono">agent confidence</span>
             <div className="rp-meter-shell">
-              <div className="rp-meter-fill" />
+              <div className="rp-meter-fill" data-animate="reveal" />
             </div>
             <p>Markdown 里有痕迹，但缺少可验证的阶段状态。</p>
           </div>
@@ -257,14 +262,14 @@ export default function RealProblem({ step }: ChapterStepProps) {
       kicker="BREAKPOINT RECOVERY"
       title="断点恢复不该重新探索现场"
     >
-      <div className="rp-restore">
-        <div className="rp-laptop card">
+      <div className="rp-restore" ref={sceneRef}>
+        <div className="rp-laptop card" data-animate="slide-left">
           <span className="label-mono">next session</span>
           {restore.map((item) => (
             <BlueprintNode key={item} label={item} active />
           ))}
         </div>
-        <div className="rp-token-panel">
+        <div className="rp-token-panel" data-animate="slide-right">
           <span className="label-mono">agent recovery trace</span>
           <div className="rp-recovery-console card">
             <div className="rp-console-head">
@@ -272,7 +277,7 @@ export default function RealProblem({ step }: ChapterStepProps) {
               <b>rebuilding context...</b>
             </div>
             {recoveryTrace.map((item) => (
-              <div className="rp-recovery-row" key={item.label}>
+              <div className="rp-recovery-row" key={item.label} data-animate="blur-in">
                 <span className="label-mono">{item.label}</span>
                 <strong>{item.text}</strong>
                 <em>{item.cost}</em>
@@ -283,10 +288,10 @@ export default function RealProblem({ step }: ChapterStepProps) {
           <div className="rp-context-meter">
             <span className="label-mono">token budget spent before coding</span>
             <div>
-              <b />
+              <b data-animate="reveal" />
             </div>
           </div>
-          <div className="rp-recovery-note card">
+          <div className="rp-recovery-note card" data-animate="blur-in">
             <span className="label-mono">cost</span>
             <p>编码还没开始，Agent 已经把上下文花在恢复现场上。</p>
           </div>

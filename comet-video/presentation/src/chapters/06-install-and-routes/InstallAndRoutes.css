@@ -524,69 +524,7 @@
   font-weight: 900;
 }
 
-.ir-topline h1,
-.ir-install-note,
-.ir-platform-note,
-.ir-repo-plate,
-.ir-type-terminal,
-.ir-shortcut-label,
-.ir-route-caption {
-  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
-}
-
-.ir-code {
-  animation: comet-type 760ms var(--ease-quart) both;
-}
-
-.ir-command-line,
-.ir-init-row,
-.ir-deploy-row,
-.ir-platform-grid span,
-.ir-route-node,
-.ir-hotfix-signal,
-.ir-tweak-list strong {
-  animation: comet-rise-strong var(--dur-slow) var(--ease-expo) both;
-}
-
-.ir-command-line b {
-  animation: comet-type 820ms var(--ease-quart) both;
-}
-
-.ir-command-line:nth-child(2),
-.ir-init-row:nth-child(2),
-.ir-deploy-row:nth-child(2),
-.ir-platform-grid span:nth-child(2),
-.ir-route-node:nth-of-type(2),
-.ir-tweak-list strong:nth-of-type(2) {
-  animation-delay: 90ms;
-}
-
-.ir-command-line:nth-child(3),
-.ir-init-row:nth-child(3),
-.ir-deploy-row:nth-child(3),
-.ir-platform-grid span:nth-child(3),
-.ir-route-node:nth-of-type(3),
-.ir-tweak-list strong:nth-of-type(3) {
-  animation-delay: 180ms;
-}
-
-.ir-platform-grid span:nth-child(4),
-.ir-route-node:nth-of-type(4),
-.ir-tweak-list strong:nth-of-type(4) {
-  animation-delay: 270ms;
-}
-
-.ir-platform-grid span:nth-child(5) {
-  animation-delay: 360ms;
-}
-
-.ir-image-card {
-  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
-}
-
-.ir-image-card img {
-  animation: comet-soft-zoom 900ms var(--ease-expo) both;
-}
+/* ── GSAP handles entrance animations via data-animate attributes. ── */
 
 @keyframes ir-token-type {
   to {

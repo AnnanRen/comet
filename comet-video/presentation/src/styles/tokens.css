@@ -38,6 +38,11 @@
   --dur-slow:       800ms;
   --dur-cinematic:  1200ms;
 
+  /* ─── cinematic motion additions ─── */
+  --ease-spring:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-spring:     800ms;
+
   /* ─── design identity: glass slabs ─── */
   --r-card:        14px;
   --r-stage:       0;

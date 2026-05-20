@@ -1,5 +1,7 @@
+import { useRef } from "react";
 import type { ChapterStepProps } from "../../registry/types";
 import { HighlightedTitle } from "../../components/HighlightedTitle";
+import { useSceneAnimations } from "../../hooks/useSceneAnimations";
 import "./FiveStageFlow.css";
 
 const phases = [
@@ -148,6 +150,9 @@ function FocusPhase({ idx }: { idx: number }) {
 }
 
 export default function FiveStageFlow({ step }: ChapterStepProps) {
+  const sceneRef = useRef<HTMLDivElement>(null);
+  useSceneAnimations(sceneRef);
+
   if (step === 0) {
     return (
       <SceneShell
@@ -155,9 +160,11 @@ export default function FiveStageFlow({ step }: ChapterStepProps) {
         kicker="WORKFLOW MAP"
         title="完整流程拆成五个阶段"
       >
-        <div className="fs-map">
+        <div className="fs-map" ref={sceneRef}>
           {phases.map((phase, idx) => (
-            <PhaseCard key={phase.id} phase={phase} index={idx} compact />
+            <div key={phase.id} data-animate="flip-in">
+              <PhaseCard phase={phase} index={idx} compact />
+            </div>
           ))}
         </div>
       </SceneShell>
@@ -173,7 +180,26 @@ export default function FiveStageFlow({ step }: ChapterStepProps) {
         kicker={phase.owner}
         title={phase.command}
       >
-        <FocusPhase idx={idx} />
+        <div className="fs-focus-layout" ref={sceneRef}>
+          <div className="fs-focus-left" data-animate="scale-in">
+            <PhaseCard phase={phase} index={idx} active />
+          </div>
+          <div className="fs-focus-right">
+            <div className="fs-owner-card card" data-animate="slide-right">
+              <span className="label-mono">owner</span>
+              <strong>{phase.owner}</strong>
+              <p>{phase.note}</p>
+            </div>
+            <div className="fs-artifacts">
+              {phase.outputs.map((item) => (
+                <div className="fs-artifact" key={item} data-animate="pop">
+                  <span />
+                  <b>{item}</b>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </SceneShell>
     );
   }
@@ -185,16 +211,16 @@ export default function FiveStageFlow({ step }: ChapterStepProps) {
         kicker="COMPLETION CHECK"
         title="需求不是代码写完就结束"
       >
-        <div className="fs-not-done">
-          <div className="fs-stop-card card">
+        <div className="fs-not-done" ref={sceneRef}>
+          <div className="fs-stop-card card" data-animate="slide-left">
             <span className="label-mono">not enough</span>
             <strong>code done</strong>
           </div>
-          <div className="fs-stop-card card">
+          <div className="fs-stop-card card" data-animate="slide-left">
             <span className="label-mono">not enough</span>
             <strong>tasks checked</strong>
           </div>
-          <div className="fs-stop-card card is-right">
+          <div className="fs-stop-card card is-right" data-animate="pop">
             <span className="label-mono">required</span>
             <strong>state aligned</strong>
           </div>
@@ -209,11 +235,11 @@ export default function FiveStageFlow({ step }: ChapterStepProps) {
       kicker="INIT OUTPUT"
       title="Comet 会把工作区分成三层结构"
     >
-      <div className="fs-structure">
-        <div className="fs-tree-card card">
+      <div className="fs-structure" ref={sceneRef}>
+        <div className="fs-tree-card card" data-animate="slide-left">
           <span className="label-mono">your-project/</span>
           {projectTree.map((group) => (
-            <div className="fs-tree-group" key={group.root}>
+            <div className="fs-tree-group" key={group.root} data-animate="reveal">
               <strong>{group.root}</strong>
               {group.files.map((file) => (
                 <code key={file}>{file}</code>
@@ -223,7 +249,7 @@ export default function FiveStageFlow({ step }: ChapterStepProps) {
         </div>
         <div className="fs-structure-notes">
           {projectTree.map((group, idx) => (
-            <div className="fs-structure-note card" key={group.label}>
+            <div className="fs-structure-note card" key={group.label} data-animate="slide-right">
               <span className="label-mono">0{idx + 1}</span>
               <strong>{group.label}</strong>
             </div>

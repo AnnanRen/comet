@@ -247,32 +247,10 @@
   font-weight: 700;
 }
 
-.sm-topline h1,
-.sm-change-card,
-.sm-state-proof,
-.sm-context-note,
-.sm-status-meter,
-.sm-scripted-rule,
-.sm-hard-stop,
-.sm-script-card,
-.sm-dry-run {
-  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
-}
-
-.sm-code {
-  animation: comet-type 760ms var(--ease-quart) both;
-}
+/* ── GSAP handles entrance animations via data-animate attributes. ── */
 
 .sm-link-line {
   transform-origin: left;
-  animation: comet-line-x 860ms var(--ease-expo) both;
-}
-
-.sm-yaml-row,
-.sm-phase-map div,
-.sm-script-items em,
-.sm-archive-step {
-  animation: comet-rise-strong var(--dur-slow) var(--ease-expo) both;
 }
 
 .sm-yaml-row {
@@ -283,41 +261,4 @@
     var(--surface) 88%
   );
   background-size: 220% 100%;
-  animation-name: comet-scan;
-}
-
-.sm-yaml-row:nth-child(2),
-.sm-phase-map div:nth-child(2),
-.sm-script-items em:nth-child(2),
-.sm-archive-step:nth-child(2) {
-  animation-delay: 80ms;
-}
-
-.sm-yaml-row:nth-child(3),
-.sm-phase-map div:nth-child(3),
-.sm-script-items em:nth-child(3),
-.sm-archive-step:nth-child(3) {
-  animation-delay: 160ms;
-}
-
-.sm-yaml-row:nth-child(4),
-.sm-phase-map div:nth-child(4),
-.sm-script-items em:nth-child(4),
-.sm-archive-step:nth-child(4) {
-  animation-delay: 240ms;
-}
-
-.sm-yaml-row:nth-child(5),
-.sm-script-items em:nth-child(5) {
-  animation-delay: 320ms;
-}
-
-.sm-yaml-row:nth-child(6) {
-  animation-delay: 400ms;
-}
-
-.sm-phase-map div.is-active,
-.sm-script-card.is-active,
-.sm-dry-run {
-  animation-name: comet-pop;
 }

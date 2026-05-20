@@ -543,88 +543,13 @@
   color: var(--text-2);
 }
 
-.cp-topline h1,
-.cp-position-copy,
-.cp-intro-proof,
-.cp-repo-chip,
-.cp-cap-card,
-.cp-bridge-card,
-.cp-context-core,
-.cp-final-note {
-  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
-}
-
-.cp-code {
-  animation: comet-type 760ms var(--ease-quart) both;
-}
-
-.cp-big-word {
-  animation: comet-slide-left 900ms var(--ease-expo) both;
-}
-
-.cp-cap-list span,
-.cp-side-axis span,
-.cp-method-step,
-.cp-relation-card,
-.cp-context-lane,
-.cp-flow-node,
-.cp-trigger-row {
-  animation: comet-rise-strong var(--dur-slow) var(--ease-expo) both;
-}
-
-.cp-cap-list span:nth-child(2),
-.cp-side-axis span:nth-child(2),
-.cp-method-step:nth-child(2),
-.cp-relation-card:nth-child(2),
-.cp-context-lane:nth-child(2),
-.cp-flow-node:nth-child(2),
-.cp-trigger-row:nth-child(2) {
-  animation-delay: 90ms;
-}
-
-.cp-cap-list span:nth-child(3),
-.cp-method-step:nth-child(3),
-.cp-relation-card:nth-child(3),
-.cp-context-core,
-.cp-flow-node:nth-child(3),
-.cp-trigger-row:nth-child(3) {
-  animation-delay: 180ms;
-}
-
-.cp-method-step:nth-child(4),
-.cp-flow-node:nth-child(4),
-.cp-trigger-row:nth-child(4) {
-  animation-delay: 270ms;
-}
-
-.cp-method-step:nth-child(5),
-.cp-flow-node:nth-child(5) {
-  animation-delay: 360ms;
-}
-
-.cp-bridge-core {
-  animation: comet-pop 780ms var(--ease-expo) both;
-}
+/* ── GSAP handles entrance animations via data-animate attributes. ── */
 
 .cp-bridge-line,
 .cp-context-lane::after,
 .cp-flow-node:not(:last-child)::after {
   transform-origin: left;
-  animation: comet-line-x 780ms var(--ease-expo) both;
 }
-
-.cp-bridge-line.is-down {
-  animation-name: comet-line-y;
-}
-
-.cp-output-rail span {
-  animation: comet-rise-strong var(--dur-slow) var(--ease-expo) both;
-}
-
-.cp-output-rail span:nth-child(2) { animation-delay: 90ms; }
-.cp-output-rail span:nth-child(3) { animation-delay: 180ms; }
-.cp-output-rail span:nth-child(4) { animation-delay: 270ms; }
-.cp-output-rail span:nth-child(5) { animation-delay: 360ms; }
 
 @keyframes cp-pulse-move {
   0% { transform: translateX(0) scale(0.82); opacity: 0; }

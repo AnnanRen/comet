@@ -852,100 +852,25 @@
   color: var(--text-2);
 }
 
-.rp-topline h1,
-.rp-comet-core,
-.rp-principle-card,
-.rp-combine-node,
-.rp-system-card,
-.rp-stack-card,
-.rp-laptop,
-.rp-token-panel,
-.rp-equation,
-.rp-side-note {
-  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
-}
-
-.rp-code,
-.rp-rail-label,
-.rp-bottom-caption {
-  animation: comet-type 760ms var(--ease-quart) both;
-}
+/* ── GSAP handles entrance animations via data-animate attributes.
+ *     Keep only structural + continuous animations below. ── */
 
 .rp-track::before {
   transform-origin: top;
-  animation: comet-line-y 900ms var(--ease-expo) both;
-}
-
-.rp-node,
-.rp-state-rail span,
-.rp-life-item,
-.rp-power-step,
-.rp-md-lines code {
-  animation: comet-rise-strong var(--dur-slow) var(--ease-expo) both;
-}
-
-.rp-node:nth-child(2),
-.rp-state-rail span:nth-child(2),
-.rp-life-item:nth-child(2),
-.rp-power-step:nth-child(2),
-.rp-md-lines code:nth-child(2) {
-  animation-delay: 90ms;
-}
-
-.rp-node:nth-child(3),
-.rp-state-rail span:nth-child(3),
-.rp-life-item:nth-child(3),
-.rp-power-step:nth-child(3),
-.rp-md-lines code:nth-child(3) {
-  animation-delay: 180ms;
-}
-
-.rp-node:nth-child(4),
-.rp-state-rail span:nth-child(4),
-.rp-life-item:nth-child(4),
-.rp-power-step:nth-child(4),
-.rp-md-lines code:nth-child(4) {
-  animation-delay: 270ms;
-}
-
-.rp-node:nth-child(5),
-.rp-state-rail span:nth-child(5),
-.rp-power-step:nth-child(5) {
-  animation-delay: 360ms;
 }
 
 .rp-flow-line,
 .rp-gap-arrow span,
 .rp-principle-line {
   transform-origin: left;
-  animation: comet-line-x 820ms var(--ease-expo) both;
-}
-
-.rp-gap-arrow b,
-.rp-hero-mark,
-.rp-state-rail {
-  animation: comet-pop 720ms var(--ease-expo) both;
 }
 
 .rp-power-bar {
   transform-origin: bottom;
-  animation: comet-bar-grow 860ms var(--ease-expo) both;
 }
 
 .rp-meter-fill {
   transform-origin: left;
-  animation: comet-line-x 1100ms var(--ease-expo) both;
-}
-
-@keyframes rp-recovery-row {
-  from {
-    transform: translateY(18px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 @keyframes rp-agent-scan {

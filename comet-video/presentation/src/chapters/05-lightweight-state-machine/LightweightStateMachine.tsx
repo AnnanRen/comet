@@ -1,5 +1,7 @@
+import { useRef } from "react";
 import type { ChapterStepProps } from "../../registry/types";
 import { HighlightedTitle } from "../../components/HighlightedTitle";
+import { useSceneAnimations } from "../../hooks/useSceneAnimations";
 import "./LightweightStateMachine.css";
 
 const yamlCore = [
@@ -95,6 +97,9 @@ function ScriptCard({
 }
 
 export default function LightweightStateMachine({ step }: ChapterStepProps) {
+  const sceneRef = useRef<HTMLDivElement>(null);
+  useSceneAnimations(sceneRef);
+
   if (step === 0) {
     return (
       <SceneShell
@@ -102,14 +107,14 @@ export default function LightweightStateMachine({ step }: ChapterStepProps) {
         kicker="LIGHTWEIGHT STATE MACHINE"
         title="每个需求都有自己的执行状态"
       >
-        <div className="sm-bound-state">
-          <div className="sm-change-card card">
+        <div className="sm-bound-state" ref={sceneRef}>
+          <div className="sm-change-card card" data-animate="slide-left">
             <span className="label-mono">OpenSpec change</span>
             <strong>add-comet-state</strong>
             <p>需求生命周期仍归 OpenSpec 管理。</p>
           </div>
           <div className="sm-link-line" />
-          <div className="sm-state-proof card">
+          <div className="sm-state-proof card" data-animate="slide-right">
             <img src="/img/Comet-statemachine.png" alt="Comet state machine screenshot" />
             <YamlPanel rows={yamlCore} label="state snapshot" />
           </div>
@@ -125,11 +130,11 @@ export default function LightweightStateMachine({ step }: ChapterStepProps) {
         kicker="WORKFLOW + PHASE"
         title="workflow 和 phase 决定当前路线"
       >
-        <div className="sm-yaml-focus">
+        <div className="sm-yaml-focus" ref={sceneRef}>
           <YamlPanel rows={yamlCore.slice(0, 2)} />
           <div className="sm-phase-map">
             {["design", "build", "verify", "archive"].map((phase) => (
-              <div className={phase === "build" ? "is-active" : ""} key={phase}>
+              <div className={phase === "build" ? "is-active" : ""} key={phase} data-animate="pop">
                 {phase}
               </div>
             ))}
@@ -146,9 +151,11 @@ export default function LightweightStateMachine({ step }: ChapterStepProps) {
         kicker="RECOVERY CONTEXT"
         title="上下文字段让 Agent 接得上"
       >
-        <div className="sm-yaml-wide">
-          <YamlPanel rows={yamlContext} />
-          <div className="sm-context-note card">
+        <div className="sm-yaml-wide" ref={sceneRef}>
+          <div data-animate="slide-left">
+            <YamlPanel rows={yamlContext} />
+          </div>
+          <div className="sm-context-note card" data-animate="slide-right">
             <span className="label-mono">resume data</span>
             <strong>设计文档、计划、构建模式、隔离方式</strong>
             <p>这些字段让恢复现场不用重新扫一遍项目。</p>
@@ -165,9 +172,11 @@ export default function LightweightStateMachine({ step }: ChapterStepProps) {
         kicker="VERIFY + ARCHIVE"
         title="验证和归档状态也写进去"
       >
-        <div className="sm-yaml-wide">
-          <YamlPanel rows={yamlVerify} />
-          <div className="sm-status-meter card">
+        <div className="sm-yaml-wide" ref={sceneRef}>
+          <div data-animate="slide-left">
+            <YamlPanel rows={yamlVerify} />
+          </div>
+          <div className="sm-status-meter card" data-animate="blur-in">
             <span className="label-mono">state confidence</span>
             <strong>可恢复</strong>
             <p>字段不复杂，但足够让 Agent 判断下一步。</p>
@@ -184,12 +193,14 @@ export default function LightweightStateMachine({ step }: ChapterStepProps) {
         kicker="NO HAND EDIT"
         title="状态不是随手改 YAML"
       >
-        <div className="sm-scripted">
-          <YamlPanel rows={[...yamlCore, ...yamlVerify.slice(1, 2)]} />
-          <div className="sm-scripted-rule card">
+        <div className="sm-scripted" ref={sceneRef}>
+          <div data-animate="slide-left">
+            <YamlPanel rows={[...yamlCore, ...yamlVerify.slice(1, 2)]} />
+          </div>
+          <div className="sm-scripted-rule card" data-animate="slide-right">
             <span className="label-mono">rule</span>
             <strong>条件满足，才写回状态</strong>
-            <p>阶段流转由脚本控制，减少“看起来完成”的漂移。</p>
+            <p>阶段流转由脚本控制，减少"看起来完成"的漂移。</p>
           </div>
         </div>
       </SceneShell>
@@ -203,9 +214,11 @@ export default function LightweightStateMachine({ step }: ChapterStepProps) {
         kicker="PHASE GATE"
         title="comet-guard.sh 是阶段闸门"
       >
-        <div className="sm-script-layout">
-          <ScriptCard name="comet-guard.sh" items={guardChecks} active />
-          <div className="sm-hard-stop card">
+        <div className="sm-script-layout" ref={sceneRef}>
+          <div data-animate="flip-in">
+            <ScriptCard name="comet-guard.sh" items={guardChecks} active />
+          </div>
+          <div className="sm-hard-stop card" data-animate="pop">
             <span className="label-mono">when failed</span>
             <strong>[HARD STOP]</strong>
             <p>条件不满足就停下，只在 --apply 时更新状态。</p>
@@ -222,13 +235,17 @@ export default function LightweightStateMachine({ step }: ChapterStepProps) {
         kicker="YAML SAFETY"
         title="统一接口和校验器防止状态漂移"
       >
-        <div className="sm-two-scripts">
-          <ScriptCard
-            name="comet-state.sh"
-            items={["read state", "set field", "check phase", "single interface"]}
-            active
-          />
-          <ScriptCard name="comet-yaml-validate.sh" items={validationChecks} />
+        <div className="sm-two-scripts" ref={sceneRef}>
+          <div data-animate="flip-in">
+            <ScriptCard
+              name="comet-state.sh"
+              items={["read state", "set field", "check phase", "single interface"]}
+              active
+            />
+          </div>
+          <div data-animate="flip-in">
+            <ScriptCard name="comet-yaml-validate.sh" items={validationChecks} />
+          </div>
         </div>
       </SceneShell>
     );
@@ -240,14 +257,14 @@ export default function LightweightStateMachine({ step }: ChapterStepProps) {
       kicker="ONE COMMAND ARCHIVE"
       title="comet-archive.sh 处理完整归档"
     >
-      <div className="sm-archive">
+      <div className="sm-archive" ref={sceneRef}>
         {archiveSteps.map((item, idx) => (
-          <div className="sm-archive-step card" key={item}>
+          <div className="sm-archive-step card" key={item} data-animate="rise">
             <span className="label-mono">0{idx + 1}</span>
             <strong>{item}</strong>
           </div>
         ))}
-        <div className="sm-dry-run">dry-run preview</div>
+        <div className="sm-dry-run" data-animate="blur-in">dry-run preview</div>
       </div>
     </SceneShell>
   );

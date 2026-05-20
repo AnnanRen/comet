@@ -275,57 +275,8 @@
   color: var(--text-2);
 }
 
-.re-topline h1,
-.re-state-card,
-.re-window,
-.re-choice-note,
-.re-resume-result {
-  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
-}
-
-.re-code {
-  animation: comet-type 760ms var(--ease-quart) both;
-}
-
-.re-terminal-line,
-.re-spec-row,
-.re-phase-node {
-  animation: comet-rise-strong var(--dur-slow) var(--ease-expo) both;
-}
-
-.re-terminal-line:nth-child(2),
-.re-spec-row:nth-child(2),
-.re-phase-node:nth-child(2) {
-  animation-delay: 90ms;
-}
-
-.re-terminal-line:nth-child(3),
-.re-spec-row:nth-child(3),
-.re-phase-node:nth-child(3) {
-  animation-delay: 180ms;
-}
-
-.re-terminal-line:nth-child(4),
-.re-spec-row:nth-child(4),
-.re-phase-node:nth-child(4) {
-  animation-delay: 270ms;
-}
-
-.re-phase-node:nth-child(5) {
-  animation-delay: 360ms;
-}
-
-.re-terminal-line b,
-.re-command-chip {
-  animation: comet-type 820ms var(--ease-quart) both;
-}
-
-.re-command-chip,
-.re-resume-result {
-  animation-name: comet-pop;
-}
+/* ── GSAP handles entrance animations via data-animate attributes. ── */
 
 .re-phase-node:not(:last-child)::after {
   transform-origin: left;
-  animation: comet-line-x 760ms var(--ease-expo) both;
 }

@@ -1,5 +1,7 @@
+import { useRef } from "react";
 import type { ChapterStepProps } from "../../registry/types";
 import { HighlightedTitle } from "../../components/HighlightedTitle";
+import { useSceneAnimations } from "../../hooks/useSceneAnimations";
 import "./CometPositioning.css";
 
 const whatItems = ["需求是什么", "提案怎么写", "Spec 怎么变更", "最后怎么归档"];
@@ -65,6 +67,9 @@ function CapabilityCard({
 }
 
 export default function CometPositioning({ step }: ChapterStepProps) {
+  const sceneRef = useRef<HTMLDivElement>(null);
+  useSceneAnimations(sceneRef);
+
   if (step === 0) {
     return (
       <SceneShell
@@ -72,15 +77,15 @@ export default function CometPositioning({ step }: ChapterStepProps) {
         kicker="NOT A NEW METHODOLOGY"
         title="稳定组合，而不是重写一套"
       >
-        <div className="cp-position">
+        <div className="cp-position" ref={sceneRef}>
           <div className="cp-position-mark">
-            <div className="cp-big-word hero-num">COMET</div>
-            <div className="cp-repo-chip card">
+            <div className="cp-big-word hero-num" data-animate="slide-left">COMET</div>
+            <div className="cp-repo-chip card" data-animate="pop">
               <span className="label-mono">project</span>
               <strong>{repoUrl}</strong>
             </div>
           </div>
-          <div className="cp-intro-proof card">
+          <div className="cp-intro-proof card" data-animate="slide-right">
             <img src="/img/Comet-introduce.png" alt="Comet introduction poster" />
             <div>
               <span className="label-mono">role</span>
@@ -99,12 +104,12 @@ export default function CometPositioning({ step }: ChapterStepProps) {
         kicker="WHAT SIDE"
         title="OpenSpec 管需求世界"
       >
-        <div className="cp-capability-layout">
+        <div className="cp-capability-layout" ref={sceneRef}>
           <CapabilityCard label="WHAT" title="OpenSpec" items={whatItems} />
           <div className="cp-side-axis">
-            <span>proposal</span>
-            <span>spec lifecycle</span>
-            <span>archive</span>
+            {whatItems.map((item) => (
+              <span key={item} data-animate="slide-right">{item}</span>
+            ))}
           </div>
         </div>
       </SceneShell>
@@ -118,11 +123,11 @@ export default function CometPositioning({ step }: ChapterStepProps) {
         kicker="HOW SIDE"
         title="Superpowers 管执行方法"
       >
-        <div className="cp-capability-layout is-how">
+        <div className="cp-capability-layout is-how" ref={sceneRef}>
           <CapabilityCard label="HOW" title="Superpowers" items={howItems} />
           <div className="cp-method-ladder">
             {howItems.map((item, idx) => (
-              <div key={item} className="cp-method-step">
+              <div key={item} className="cp-method-step" data-animate="slide-right">
                 <span className="hero-num">{idx + 1}</span>
                 <b>{item}</b>
               </div>
@@ -140,18 +145,18 @@ export default function CometPositioning({ step }: ChapterStepProps) {
         kicker="CONNECTOR"
         title="Comet 把两条线接起来"
       >
-        <div className="cp-bridge">
-          <div className="cp-bridge-card card is-what">
+        <div className="cp-bridge" ref={sceneRef}>
+          <div className="cp-bridge-card card is-what" data-animate="slide-left">
             <span className="label-mono">WHAT</span>
             <strong>OpenSpec</strong>
             <p>proposal / spec lifecycle / archive</p>
           </div>
-          <div className="cp-bridge-core card">
+          <div className="cp-bridge-core card" data-animate="pop">
             <span className="label-mono">dispatch</span>
             <b>Comet</b>
             <p>只做组合调度</p>
           </div>
-          <div className="cp-bridge-card card is-how">
+          <div className="cp-bridge-card card is-how" data-animate="slide-right">
             <span className="label-mono">HOW</span>
             <strong>Superpowers</strong>
             <p>brainstorm / design / plan / verify</p>
@@ -161,7 +166,7 @@ export default function CometPositioning({ step }: ChapterStepProps) {
           <div className="cp-bridge-line is-down" />
           <div className="cp-pulse is-left" />
           <div className="cp-pulse is-right" />
-          <div className="cp-output-rail card">
+          <div className="cp-output-rail card" data-animate="rise">
             {["open", "design", "build", "verify", "archive"].map((phase) => (
               <span key={phase}>{phase}</span>
             ))}
@@ -178,17 +183,17 @@ export default function CometPositioning({ step }: ChapterStepProps) {
         kicker="DESIGN BOUNDARY"
         title="不是替代，是调度"
       >
-        <div className="cp-not-replace">
-          <div className="cp-relation-card card is-muted">
+        <div className="cp-not-replace" ref={sceneRef}>
+          <div className="cp-relation-card card is-muted" data-animate="slide-left">
             <span className="label-mono">does not replace</span>
             <strong>OpenSpec</strong>
           </div>
-          <div className="cp-relation-card card is-main">
+          <div className="cp-relation-card card is-main" data-animate="pop">
             <span className="label-mono">coordinates</span>
             <strong>Comet</strong>
             <p>把阶段、状态、Skill 触发点对齐。</p>
           </div>
-          <div className="cp-relation-card card is-muted">
+          <div className="cp-relation-card card is-muted" data-animate="slide-right">
             <span className="label-mono">does not replace</span>
             <strong>Superpowers</strong>
           </div>
@@ -204,16 +209,16 @@ export default function CometPositioning({ step }: ChapterStepProps) {
         kicker="ONE CONTEXT"
         title="两套能力被接成连续上下文"
       >
-        <div className="cp-context">
+        <div className="cp-context" ref={sceneRef}>
           {contextItems.map((group) => (
-            <div className="cp-context-lane card" key={group.lane}>
+            <div className="cp-context-lane card" key={group.lane} data-animate="slide-left">
               <span className="label-mono">{group.lane}</span>
               {group.items.map((item) => (
                 <b key={item}>{item}</b>
               ))}
             </div>
           ))}
-          <div className="cp-context-core">
+          <div className="cp-context-core" data-animate="blur-in">
             <span className="label-mono">Comet</span>
             <strong>shared state</strong>
             <p>让需求信息和执行信息在同一条上下文里继续传递。</p>
@@ -229,16 +234,16 @@ export default function CometPositioning({ step }: ChapterStepProps) {
       kicker="TRIGGER RULE"
       title="正确阶段，触发正确 Skill"
     >
-      <div className="cp-trigger-table card">
+      <div className="cp-trigger-table card" ref={sceneRef}>
         {triggerItems.map((item) => (
-          <div className="cp-trigger-row" key={item.phase}>
+          <div className="cp-trigger-row" key={item.phase} data-animate="blur-in">
             <span className="label-mono">{item.phase}</span>
             <strong>{item.skill}</strong>
             <em>triggered here</em>
           </div>
         ))}
       </div>
-      <div className="cp-final-note">
+      <div className="cp-final-note" data-animate="blur-in">
         <span className="label-mono">positioning</span>
         <p>Comet 的核心不是多一个命令，而是让阶段和能力稳定对应。</p>
       </div>

@@ -167,9 +167,9 @@ body {
   cursor: pointer;
   box-shadow: var(--shadow-stage);
   border: var(--stage-border, none);
-  /* radius on the LIVE stage gives editorial / keynote softness;
-     theme can disable with --r-stage: 0 */
   border-radius: var(--r-stage, 0);
+  /* 3D perspective for cinematic card depth */
+  perspective: 1200px;
 }
 
 /* OPTIONAL pattern layer drawn ON the stage so screen recordings catch it */
@@ -195,7 +195,7 @@ body {
 }
 
 /* every chapter root */
-.scene { position: absolute; inset: 0; z-index: 2; }
+.scene { position: absolute; inset: 0; z-index: 2; transform-style: preserve-3d; }
 
 .scene:not(.chapter-real-problem.step-0)::before,
 .scene:not(.chapter-real-problem.step-0)::after {

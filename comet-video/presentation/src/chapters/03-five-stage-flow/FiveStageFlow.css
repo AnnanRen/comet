@@ -347,54 +347,13 @@
   color: var(--accent);
 }
 
-.fs-topline h1,
-.fs-owner-card,
-.fs-stop-card,
-.fs-loop-core,
-.fs-tree-card,
-.fs-structure-note {
-  animation: comet-rise var(--dur-slow) var(--ease-expo) both;
-}
-
-.fs-code {
-  animation: comet-type 760ms var(--ease-quart) both;
-}
-
-.fs-phase-card,
-.fs-artifact,
-.fs-loop-node {
-  animation: comet-rise-strong var(--dur-slow) var(--ease-expo) both;
-}
-
-.fs-phase-card:nth-child(2),
-.fs-artifact:nth-child(2),
-.fs-loop-node:nth-child(2) {
-  animation-delay: 90ms;
-}
-
-.fs-phase-card:nth-child(3),
-.fs-artifact:nth-child(3),
-.fs-loop-node:nth-child(3) {
-  animation-delay: 180ms;
-}
-
-.fs-phase-card:nth-child(4),
-.fs-loop-node:nth-child(4) {
-  animation-delay: 270ms;
-}
-
-.fs-phase-card:nth-child(5),
-.fs-loop-node:nth-child(5) {
-  animation-delay: 360ms;
-}
+/* ── GSAP handles entrance animations via data-animate attributes. ── */
 
 .fs-phase-card:not(:last-child)::after {
   transform-origin: left;
-  animation: comet-line-x 760ms var(--ease-expo) both;
 }
 
 .fs-output-list span {
-  animation: comet-scan 820ms var(--ease-quart) both;
   background-image: linear-gradient(
     100deg,
     var(--surface) 0%,
@@ -402,10 +361,6 @@
     var(--surface) 84%
   );
   background-size: 220% 100%;
-}
-
-.fs-loop-core {
-  animation-name: comet-pop;
 }
 
 @keyframes fs-tree-expand {
