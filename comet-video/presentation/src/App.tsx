@@ -13,6 +13,16 @@ import { useAutoMode } from "./hooks/useAutoMode";
 import { useStepper } from "./hooks/useStepper";
 import { CHAPTERS } from "./registry/chapters";
 
+const SCENE_TOPICS: Record<string, string> = {
+  "real-problem": "LONG TASK BREAKPOINTS",
+  "comet-positioning": "WHAT + HOW COMPOSITION",
+  "five-stage-flow": "FIVE PHASE PIPELINE",
+  "resume-entry": "RESUME ENTRYPOINT",
+  "lightweight-state-machine": "LIGHTWEIGHT STATE",
+  "install-and-routes": "INSTALL + ROUTES",
+  "reference-value": "COMPOSITION PATTERN",
+};
+
 /**
  * Estimate spoken duration of a Chinese narration string. Native pace
  * ≈ 4 char/s → 250ms per char. Used as Auto-mode fallback ONLY when the
@@ -29,6 +39,7 @@ export default function App() {
   const ch = CHAPTERS[stepper.cursor.chapter]!;
   const Cmp = ch.Component;
   const stepText = ch.narrations[stepper.cursor.step] ?? "";
+  const stepLabel = String(stepper.cursor.step + 1).padStart(2, "0");
 
   const { mode, cycleMode, autoStarted, setAutoStarted } = useAutoMode();
 
@@ -54,7 +65,13 @@ export default function App() {
   return (
     <>
       <Stage onAdvance={stepper.next}>
-        <div key={ch.id} className="scene">
+        <div className="scene-density-layer" aria-hidden="true" />
+        <div
+          key={ch.id}
+          className={`scene chapter-${ch.id} step-${stepper.cursor.step}`}
+          data-topic={SCENE_TOPICS[ch.id] ?? ch.title}
+          data-step={stepLabel}
+        >
           <Cmp step={stepper.cursor.step} />
         </div>
       </Stage>

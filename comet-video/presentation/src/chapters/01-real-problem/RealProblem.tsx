@@ -1,11 +1,42 @@
 import type { ChapterStepProps } from "../../registry/types";
+import { HighlightedTitle } from "../../components/HighlightedTitle";
 import "./RealProblem.css";
 
-const lifecycle = ["active spec", "proposal", "tasks", "archive"];
+const lifecycle = [
+  {
+    title: "ACTIVE SPEC",
+    desc: "当前需求",
+    file: "specs/<capability>/spec.md",
+    meta: "source of truth",
+  },
+  {
+    title: "PROPOSAL",
+    desc: "变更材料",
+    file: "changes/<id>/proposal.md",
+    meta: "why it changes",
+  },
+  {
+    title: "TASKS",
+    desc: "变更材料",
+    file: "changes/<id>/tasks.md",
+    meta: "what is done",
+  },
+  {
+    title: "ARCHIVE",
+    desc: "完成归档",
+    file: "archive/<date>-<id>/",
+    meta: "closed loop",
+  },
+];
 const gaps = ["proposal", "tasks", "design gap", "agent judgment"];
 const powers = ["brainstorming", "design doc", "plan", "TDD", "verify"];
 const markdown = ["- [x] task done", "- [ ] state?", "phase: unknown"];
 const restore = ["read docs", "scan code", "infer phase"];
+const recoveryTrace = [
+  { label: "tool", text: "read_file proposal.md / tasks.md", cost: "done" },
+  { label: "tool", text: "search repo for changed files", cost: "done" },
+  { label: "reason", text: "infer current workflow phase", cost: "uncertain" },
+];
 
 function RailLabel({ children }: { children: string }) {
   return <span className="rp-rail-label label-mono">{children}</span>;
@@ -50,7 +81,7 @@ function SceneShell({
       <div className="rp-topline">
         <div>
           <div className="kicker">{kicker}</div>
-          <h1>{title}</h1>
+          <h1><HighlightedTitle text={title} /></h1>
         </div>
         <div className="rp-code label-mono">{code}</div>
       </div>
@@ -64,29 +95,45 @@ export default function RealProblem({ step }: ChapterStepProps) {
   if (step === 0) {
     return (
       <SceneShell
-        code="COMET / SYSTEM MAP"
-        kicker="AI CODING LONG TASKS"
-        title="一条能恢复的开发轨道"
+        code="COMET / INTRO"
+        kicker="OPENSPEC + SUPERPOWERS WORKFLOW"
+        title="让 AI 长任务，真的能接着做"
       >
-        <div className="rp-track-scene">
-          <div className="rp-track">
-            {["open", "design", "build", "verify", "archive"].map((item) => (
-              <BlueprintNode key={item} label={item} active />
-            ))}
+        <div className="rp-comet-intro">
+          <div className="rp-comet-core">
+            <span className="label-mono">core idea</span>
+            <strong>COMET</strong>
+            <p>把 OpenSpec 和 Superpowers 最好用的部分结合在一起。</p>
+            <div className="rp-comet-rule">不修改原能力，只做组合调度。</div>
+            <div className="rp-comet-repo label-mono">github.com/rpamis/comet</div>
           </div>
-          <div className="rp-orbit">
-            <div className="rp-system-card card">
+          <div className="rp-principle-map">
+            <div className="rp-principle-card card is-what">
               <span className="label-mono">WHAT</span>
               <strong>OpenSpec</strong>
-              <p>需求、提案、Spec 生命周期、归档</p>
+              <p>保留 Spec 管理、proposal、归档这套长处。</p>
             </div>
-            <div className="rp-system-card card">
+            <div className="rp-principle-card card is-how">
               <span className="label-mono">HOW</span>
               <strong>Superpowers</strong>
-              <p>头脑风暴、技术设计、计划、执行</p>
+              <p>保留头脑风暴、深度设计、计划和验证。</p>
+            </div>
+            <div className="rp-combine-column">
+              <div className="rp-principle-line is-top" />
+              <div className="rp-principle-line is-bottom" />
+              <div className="rp-combine-node card">
+                <span className="label-mono">combine only</span>
+                <strong>Comet</strong>
+                <p>组合调度层</p>
+              </div>
+              <div className="rp-principle-line is-out" />
+            </div>
+            <div className="rp-state-rail card">
+              {["open", "design", "build", "verify", "archive"].map((item) => (
+                <span key={item}>{item}</span>
+              ))}
             </div>
           </div>
-          <div className="rp-hero-mark hero-num">01</div>
         </div>
       </SceneShell>
     );
@@ -101,24 +148,21 @@ export default function RealProblem({ step }: ChapterStepProps) {
       >
         <div className="rp-lifecycle">
           <RailLabel>OpenSpec</RailLabel>
-          <div className="rp-flow-line" />
           {lifecycle.map((item, idx) => (
-            <div className="rp-life-item card" key={item}>
-              <span className="rp-index label-mono">0{idx + 1}</span>
-              <strong>{item}</strong>
-              <small>
-                {idx === 0
-                  ? "当前需求"
-                  : idx === 3
-                    ? "完成归档"
-                    : "变更材料"}
-              </small>
+            <div className="rp-life-item card" key={item.title}>
+              <div className="rp-life-head">
+                <span className="rp-index label-mono">0{idx + 1}</span>
+                <b className="label-mono">{item.meta}</b>
+              </div>
+              <strong>{item.title}</strong>
+              <small>{item.desc}</small>
+              <code>{item.file}</code>
             </div>
           ))}
-        </div>
-        <div className="rp-side-note">
-          <span className="label-mono">ARTICLE CUE</span>
-          <p>激活中的 Spec 与已归档 Spec，是 OpenSpec 的强项。</p>
+          <div className="rp-life-summary card">
+            <span className="label-mono">ARTICLE CUE</span>
+            <p>激活中的 Spec 与已归档 Spec，是 OpenSpec 的强项。</p>
+          </div>
         </div>
       </SceneShell>
     );
@@ -221,14 +265,31 @@ export default function RealProblem({ step }: ChapterStepProps) {
           ))}
         </div>
         <div className="rp-token-panel">
-          <span className="label-mono">token spent on context recovery</span>
-          <div className="rp-token-stack">
-            {Array.from({ length: 12 }).map((_, idx) => (
-              <span key={idx} style={{ animationDelay: `${idx * 70}ms` }} />
+          <span className="label-mono">agent recovery trace</span>
+          <div className="rp-recovery-console card">
+            <div className="rp-console-head">
+              <span className="label-mono">agent messages</span>
+              <b>rebuilding context...</b>
+            </div>
+            {recoveryTrace.map((item) => (
+              <div className="rp-recovery-row" key={item.label}>
+                <span className="label-mono">{item.label}</span>
+                <strong>{item.text}</strong>
+                <em>{item.cost}</em>
+              </div>
             ))}
+            <div className="rp-scan-line" />
           </div>
-          <strong>重新理解现场</strong>
-          <p>Comet 后续章节会把这个问题收束到状态机和阶段守护。</p>
+          <div className="rp-context-meter">
+            <span className="label-mono">token budget spent before coding</span>
+            <div>
+              <b />
+            </div>
+          </div>
+          <div className="rp-recovery-note card">
+            <span className="label-mono">cost</span>
+            <p>编码还没开始，Agent 已经把上下文花在恢复现场上。</p>
+          </div>
         </div>
       </div>
     </SceneShell>

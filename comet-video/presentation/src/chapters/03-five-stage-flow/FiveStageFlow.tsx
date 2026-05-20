@@ -1,4 +1,5 @@
 import type { ChapterStepProps } from "../../registry/types";
+import { HighlightedTitle } from "../../components/HighlightedTitle";
 import "./FiveStageFlow.css";
 
 const phases = [
@@ -39,6 +40,24 @@ const phases = [
   },
 ];
 
+const projectTree = [
+  {
+    label: "platform skills",
+    root: ".claude/skills/",
+    files: ["comet/SKILL.md", "comet/scripts/comet-guard.sh", "openspec-*/SKILL.md", "brainstorming/SKILL.md"],
+  },
+  {
+    label: "OpenSpec — WHAT",
+    root: "openspec/changes/<name>/",
+    files: [".openspec.yaml", ".comet.yaml", "proposal.md", "specs/<capability>/spec.md"],
+  },
+  {
+    label: "Superpowers — HOW",
+    root: "docs/superpowers/",
+    files: ["specs/YYYY-MM-DD-topic-design.md", "plans/YYYY-MM-DD-feature.md"],
+  },
+];
+
 function SceneShell({
   code,
   kicker,
@@ -55,7 +74,7 @@ function SceneShell({
       <div className="fs-topline">
         <div>
           <div className="kicker">{kicker}</div>
-          <h1>{title}</h1>
+          <h1><HighlightedTitle text={title} /></h1>
         </div>
         <div className="fs-code label-mono">{code}</div>
       </div>
@@ -186,20 +205,29 @@ export default function FiveStageFlow({ step }: ChapterStepProps) {
 
   return (
     <SceneShell
-      code="CLOSED LOOP"
-      kicker="CONSISTENT STATE"
-      title="需求、实现、验证、归档回到一致状态"
+      code="PROJECT STRUCTURE"
+      kicker="INIT OUTPUT"
+      title="Comet 会把工作区分成三层结构"
     >
-      <div className="fs-loop">
-        {phases.map((phase, idx) => (
-          <div className="fs-loop-node" key={phase.id}>
-            <span className="label-mono">0{idx + 1}</span>
-            <strong>{phase.id}</strong>
-          </div>
-        ))}
-        <div className="fs-loop-core">
-          <span className="label-mono">Comet</span>
-          <b>五阶段闭环</b>
+      <div className="fs-structure">
+        <div className="fs-tree-card card">
+          <span className="label-mono">your-project/</span>
+          {projectTree.map((group) => (
+            <div className="fs-tree-group" key={group.root}>
+              <strong>{group.root}</strong>
+              {group.files.map((file) => (
+                <code key={file}>{file}</code>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div className="fs-structure-notes">
+          {projectTree.map((group, idx) => (
+            <div className="fs-structure-note card" key={group.label}>
+              <span className="label-mono">0{idx + 1}</span>
+              <strong>{group.label}</strong>
+            </div>
+          ))}
         </div>
       </div>
     </SceneShell>

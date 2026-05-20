@@ -6,5 +6,5 @@ export const narrations = [
   "第四步是 comet-verify。这一阶段负责验证和收尾。OpenSpec 侧会检查需求是否满足。Superpowers 侧会处理验证报告和完成流程。两边的 Spec 关系也会在这里对齐。",
   "第五步是 comet-archive。这一阶段回到归档。OpenSpec 的 delta spec 会同步回 main spec。change 会被移动到归档目录。Superpowers 侧的设计文档和计划文档，也会补上状态标注。",
   "这样一次需求才算真正结束。不是代码写完就停。也不是 tasks 勾完就停。",
-  "而是需求、实现、验证、归档都回到一致状态。这也是 Comet 五阶段流程的核心。",
+  "初始化之后，Comet 会把项目结构分成三层。平台侧是 skills 目录，放 Comet、OpenSpec 和 Superpowers 的 Skill。OpenSpec 侧管理 changes、proposal、spec 和状态文件。Superpowers 侧放设计文档和实现计划。这样 WHAT、HOW 和工作流状态，落在各自该在的位置。",
 ];

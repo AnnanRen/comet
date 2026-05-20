@@ -51,25 +51,15 @@ export function useStepper(chapters: ChapterDef[]): StepperState {
     return fallback;
   });
 
-  // Re-sanitize if the chapter list shape changes after mount (e.g. HMR
-  // updates `chapters.ts`) — keeps a stale persisted cursor from leaking
-  // into a render where it's now out of range.
-  useEffect(() => {
-    setCursor((cur) => {
-      const next = sanitize(cur, chapters);
-      return next.chapter === cur.chapter && next.step === cur.step
-        ? cur
-        : next;
-    });
-  }, [chapters]);
+  const safeCursor = useMemo(() => sanitize(cursor, chapters), [cursor, chapters]);
 
   useEffect(() => {
     try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(cursor));
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(safeCursor));
     } catch {
       /* ignore */
     }
-  }, [cursor]);
+  }, [safeCursor]);
 
   const offsets = useMemo(() => {
     const arr: number[] = [];
@@ -84,7 +74,7 @@ export function useStepper(chapters: ChapterDef[]): StepperState {
     () => chapters.reduce((s, c) => s + c.narrations.length, 0),
     [chapters],
   );
-  const globalIndex = (offsets[cursor.chapter] ?? 0) + cursor.step;
+  const globalIndex = (offsets[safeCursor.chapter] ?? 0) + safeCursor.step;
 
   const next = useCallback(() => {
     setCursor((cur) => {
@@ -159,9 +149,9 @@ export function useStepper(chapters: ChapterDef[]): StepperState {
     return () => window.removeEventListener("keydown", onKey);
   }, [next, prev, jumpToChapter, chapters]);
 
-  const ch = chapters[cursor.chapter]!;
+  const ch = chapters[safeCursor.chapter]!;
   return {
-    cursor,
+    cursor: safeCursor,
     totalChapters: chapters.length,
     chapterTotalSteps: ch.narrations.length,
     globalIndex,

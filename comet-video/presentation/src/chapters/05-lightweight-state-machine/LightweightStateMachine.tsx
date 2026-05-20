@@ -1,4 +1,5 @@
 import type { ChapterStepProps } from "../../registry/types";
+import { HighlightedTitle } from "../../components/HighlightedTitle";
 import "./LightweightStateMachine.css";
 
 const yamlCore = [
@@ -41,7 +42,7 @@ function SceneShell({
       <div className="sm-topline">
         <div>
           <div className="kicker">{kicker}</div>
-          <h1>{title}</h1>
+          <h1><HighlightedTitle text={title} /></h1>
         </div>
         <div className="sm-code label-mono">{code}</div>
       </div>
@@ -108,7 +109,10 @@ export default function LightweightStateMachine({ step }: ChapterStepProps) {
             <p>需求生命周期仍归 OpenSpec 管理。</p>
           </div>
           <div className="sm-link-line" />
-          <YamlPanel rows={yamlCore} />
+          <div className="sm-state-proof card">
+            <img src="/img/Comet-statemachine.png" alt="Comet state machine screenshot" />
+            <YamlPanel rows={yamlCore} label="state snapshot" />
+          </div>
         </div>
       </SceneShell>
     );

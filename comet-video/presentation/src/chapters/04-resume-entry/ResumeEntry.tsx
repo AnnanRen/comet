@@ -1,4 +1,5 @@
 import type { ChapterStepProps } from "../../registry/types";
+import { HighlightedTitle } from "../../components/HighlightedTitle";
 import "./ResumeEntry.css";
 
 const specs = [
@@ -25,7 +26,7 @@ function SceneShell({
       <div className="re-topline">
         <div>
           <div className="kicker">{kicker}</div>
-          <h1>{title}</h1>
+          <h1><HighlightedTitle text={title} /></h1>
         </div>
         <div className="re-code label-mono">{code}</div>
       </div>

@@ -1,37 +1,37 @@
 /* ─────────────────────────────────────────────────────────────────────
- * Theme · warm-keynote
- *   Modern SaaS keynote with editorial warmth: warm cream canvas + dark
- *   cocoa ink + clay accent + huge rounded glass slabs. Inter for everything,
- *   font-black for hero numbers (chunky modernist).
+ * Theme · claude-editorial
+ *   Warm parchment canvas + near-black ink + muted terracotta accent.
+ *   The palette follows Claude's public design direction: soft paper,
+ *   warm neutrals, restrained borders, and literary editorial type.
  *
  *   character knobs:
- *     • hero numbers   — chunky black sans (font-weight 900)
+ *     • hero numbers   — dense terminal slabs with ink-press shadow
  *     • rule           — 1px solid neutral hairline + 4px accent rule
- *     • card           — large radius (24-32px), soft warm shadow
+ *     • card           — restrained radius, soft warm shadow
  *     • surface        — warm 40px paper grid
  *     • motion         — springy with slight overshoot
  * ───────────────────────────────────────────────────────────────────── */
 :root {
   /* ─── palette ─── */
-  --shell:        #f4efe7;
-  --surface:      #faf7f0;
-  --surface-2:    #fffdfa;
-  --surface-3:    #eee6da;
-  --text:         #2f241f;
-  --text-2:       #5a4a42;
-  --text-mute:    #8d7d70;
-  --text-faint:   #c7b8a8;
-  --rule:         #e3d7c8;
+  --shell:        #ebe5d8;
+  --surface:      #f5f4ed;
+  --surface-2:    #faf9f5;
+  --surface-3:    #ede6d9;
+  --text:         #141413;
+  --text-2:       #4a4038;
+  --text-mute:    #8a7d70;
+  --text-faint:   #d1c5b6;
+  --rule:         #d8ccbc;
   --accent:       #c96442;
-  --accent-soft:  rgba(201, 100, 66, 0.12);
-  --accent-glow:  rgba(201, 100, 66, 0.28);
+  --accent-soft:  rgba(201, 100, 66, 0.10);
+  --accent-glow:  rgba(201, 100, 66, 0.18);
 
   /* ─── fonts ─── */
-  --font-display-cn: "Noto Sans SC", "Source Han Sans SC", -apple-system, sans-serif;
-  --font-display-en: "Inter", "SF Pro Display", -apple-system, sans-serif;
-  --font-body:       "Inter", "Noto Sans SC", -apple-system, sans-serif;
-  --font-mono:       "JetBrains Mono", "SF Mono", ui-monospace, monospace;
-  --font-features:   "cv11", "ss01", "tnum";
+  --font-display-cn: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  --font-display-en: "Source Serif 4", "Instrument Serif", "Georgia", serif;
+  --font-body:       "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
+  --font-mono:       "IBM Plex Mono", "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+  --font-features:   "cv11", "ss01", "tnum", "kern";
 
   /* ─── motion: springy keynote ─── */
   --dur-base:       500ms;
@@ -39,28 +39,29 @@
   --dur-cinematic:  1200ms;
 
   /* ─── design identity: glass slabs ─── */
-  --r-card:        var(--r-xl);     /* 32px keynote slabs */
+  --r-card:        14px;
   --r-stage:       0;
   --rule-w:        1px;
   --rule-style:    solid;
   --hero-num-font:    var(--font-display-en);
-  --hero-num-style:   normal;
-  --hero-num-weight:  900;
-  --hero-num-track:   -0.04em;
+  --hero-num-style:   italic;
+  --hero-num-weight:  500;
+  --hero-num-track:   0;
+  --hero-num-shadow: none;
   --stage-pad-x:   100px;
   --stage-pad-y:   80px;
   --card-shadow:
-    0 1px 2px rgba(47, 36, 31, 0.04),
-    0 24px 60px rgba(47, 36, 31, 0.10);
+    0 0 0 1px rgba(20, 20, 19, 0.02),
+    0 12px 34px rgba(68, 57, 44, 0.07);
   --card-glass-bg:     rgba(255, 255, 255, 0.85);
   --card-glass-border: rgba(255, 255, 255, 0.9);
   --shadow-stage:
-    0 60px 160px rgba(47, 36, 31, 0.18),
+    0 60px 160px rgba(47, 36, 31, 0.16),
     0 0 0 1px rgba(0, 0, 0, 0.03);
 
   /* ─── decoration: warm 40px grid ─── */
   --surface-pattern:
-    linear-gradient(rgba(160, 133, 110, 0.16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(160, 133, 110, 0.16) 1px, transparent 1px);
+    linear-gradient(rgba(126, 111, 94, 0.13) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 111, 94, 0.13) 1px, transparent 1px);
   --surface-pattern-size: 40px 40px;
 }

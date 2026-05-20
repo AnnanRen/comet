@@ -122,7 +122,7 @@
   {
     "chapter": "five-stage-flow",
     "step": 8,
-    "text": "而是需求、实现、验证、归档都回到一致状态。这也是 Comet 五阶段流程的核心。",
+    "text": "初始化之后，Comet 会把项目结构分成三层。平台侧是 skills 目录，放 Comet、OpenSpec 和 Superpowers 的 Skill。OpenSpec 侧管理 changes、proposal、spec 和状态文件。Superpowers 侧放设计文档和实现计划。这样 WHAT、HOW 和工作流状态，落在各自该在的位置。",
     "audio": "five-stage-flow/8.mp3"
   },
   {
@@ -272,7 +272,7 @@
   {
     "chapter": "reference-value",
     "step": 7,
-    "text": "后续从 /comet 开始。它会根据当前 Spec 状态继续往下走。Comet 最想解决的事情很简单：让 AI Coding 的长任务，不再每次都从“重新理解现场”开始。",
+    "text": "最后收束一下。Comet 留下的不是某一个命令的用法。而是一套组合 Skill 的参考范式。它证明了三件事。第一，嵌套 Skill 要真正触发，而不是看起来像触发。第二，多阶段流程可以自动流转。第三，状态机和守护脚本可以让这种组合在真实项目里可靠落地。",
     "audio": "reference-value/7.mp3"
   }
 ]

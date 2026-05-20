@@ -34,7 +34,7 @@ body {
   text-wrap: pretty;
   /* OpenType feature settings (themes can override the value) */
   font-feature-settings: var(--font-features, "tnum", "ss01");
-  letter-spacing: var(--track-snug, -0.005em);
+  letter-spacing: 0;
   cursor: default;
 }
 ::selection { background: var(--accent); color: var(--surface); }
@@ -54,8 +54,8 @@ body {
   --t-micro:       12px;
 
   /* ── Tracking presets (used by primitive classes) ── */
-  --track-tight:   -0.025em;   /* large serif display */
-  --track-snug:    -0.005em;   /* body */
+  --track-tight:   0;
+  --track-snug:    0;
   --track-caps:     0.22em;    /* mono uppercase labels */
 
   /* ── Spacing scale (used by primitive classes) ── */
@@ -122,7 +122,33 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--shell);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.95), transparent 34%),
+    radial-gradient(circle at 22% 20%, rgba(148, 185, 214, 0.13), transparent 30%),
+    radial-gradient(circle at 82% 78%, rgba(201, 100, 66, 0.055), transparent 28%),
+    linear-gradient(135deg, #f8fafc 0%, #eef3f7 48%, #ffffff 100%);
+}
+
+.app-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(116, 139, 160, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(116, 139, 160, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 0 62%, transparent 100%);
+  opacity: 0.7;
+}
+
+.app-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 58%, rgba(74, 92, 108, 0.08) 100%);
 }
 .stage-fitter {
   position: relative;
@@ -170,6 +196,292 @@ body {
 
 /* every chapter root */
 .scene { position: absolute; inset: 0; z-index: 2; }
+
+.scene:not(.chapter-real-problem.step-0)::before,
+.scene:not(.chapter-real-problem.step-0)::after {
+  position: absolute;
+  z-index: 8;
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--text-mute) 78%, transparent);
+}
+
+.scene:not(.chapter-real-problem.step-0)::before {
+  content: "CHAPTER \00B7  " attr(data-step) " \00B7  " attr(data-topic);
+  top: 66px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scene:not(.chapter-real-problem.step-0)::after {
+  content: "COMET WORKFLOW \00B7  OPENSPEC + SUPERPOWERS";
+  right: 92px;
+  bottom: 46px;
+  color: color-mix(in srgb, var(--accent) 62%, var(--text-mute));
+}
+
+.scene:not(.chapter-real-problem.step-0) .scene-pad {
+  padding-top: 66px;
+  padding-bottom: 64px;
+}
+
+.scene:not(.chapter-real-problem.step-0) :is(
+  .rp-topline,
+  .cp-topline,
+  .fs-topline,
+  .re-topline,
+  .sm-topline,
+  .ir-topline,
+  .rv-topline
+) {
+  margin-bottom: 18px;
+  align-items: start;
+}
+
+.scene :is(
+  .rp-topline h1,
+  .cp-topline h1,
+  .fs-topline h1,
+  .re-topline h1,
+  .sm-topline h1,
+  .ir-topline h1,
+  .rv-topline h1
+) {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  max-width: 1320px;
+  font-size: clamp(60px, 4.05vw, 76px);
+  line-height: 1.03;
+  font-weight: 800;
+  letter-spacing: 0;
+  color: var(--text);
+  text-shadow: none;
+}
+
+.scene :is(
+  .rp-topline h1,
+  .cp-topline h1,
+  .fs-topline h1,
+  .re-topline h1,
+  .sm-topline h1,
+  .ir-topline h1,
+  .rv-topline h1
+) mark {
+  color: var(--accent);
+  background: transparent;
+  font: inherit;
+  padding: 0;
+}
+
+.scene :is(
+  .rp-topline h1,
+  .cp-topline h1,
+  .fs-topline h1,
+  .re-topline h1,
+  .sm-topline h1,
+  .ir-topline h1,
+  .rv-topline h1
+)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -16px;
+  width: min(360px, 38%);
+  height: 3px;
+  background: var(--accent);
+  opacity: 0.84;
+}
+
+.scene:not(.chapter-real-problem.step-0) .rule {
+  opacity: 0.66;
+}
+
+.scene:not(.chapter-real-problem.step-0) .card {
+  background:
+    linear-gradient(180deg, rgba(250, 249, 245, 0.98), rgba(245, 244, 237, 0.92));
+  border-color: color-mix(in srgb, var(--rule) 92%, var(--text));
+  box-shadow:
+    0 10px 28px rgba(68, 57, 44, 0.055),
+    0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+.scene:not(.chapter-real-problem.step-0) .card:nth-of-type(3n + 1) {
+  border-color: color-mix(in srgb, var(--accent) 52%, var(--rule));
+}
+
+.scene:not(.chapter-real-problem.step-0) .card:nth-of-type(4n + 2) {
+  border-left: 4px solid color-mix(in srgb, var(--accent) 76%, var(--rule));
+}
+
+.scene:not(.chapter-real-problem.step-0) .card:nth-of-type(5n) {
+  background:
+    linear-gradient(180deg, rgba(250, 249, 245, 0.96), rgba(238, 230, 217, 0.52));
+}
+
+.scene:not(.chapter-real-problem.step-0) :is(
+  .rp-combine-node,
+  .rp-state-rail,
+  .rp-stack-card.is-warning,
+  .cp-bridge-core,
+  .cp-relation-card.is-main,
+  .cp-context-core,
+  .fs-phase-card.is-active,
+  .fs-stop-card.is-right,
+  .re-window.is-current,
+  .re-phase-node.is-active,
+  .sm-phase-map div.is-active,
+  .sm-script-card.is-active,
+  .ir-shortcut-label,
+  .rv-auto-card.is-system,
+  .rv-summary-card.is-main,
+  .rv-final-claim
+) {
+  border-color: var(--accent);
+}
+
+.scene:not(.chapter-real-problem.step-0) .label-mono {
+  color: color-mix(in srgb, var(--text-mute) 86%, var(--accent));
+}
+
+.scene:not(.chapter-real-problem.step-0) :is(
+  .cp-capability-layout,
+  .cp-bridge,
+  .cp-context,
+  .cp-not-replace,
+  .fs-map,
+  .fs-focus-layout,
+  .fs-not-done,
+  .fs-structure,
+  .re-entry,
+  .re-resume,
+  .re-history,
+  .re-question,
+  .re-state,
+  .sm-yaml-focus,
+  .sm-yaml-wide,
+  .sm-scripted,
+  .sm-script-layout,
+  .sm-two-scripts,
+  .sm-archive,
+  .ir-command,
+  .ir-init,
+  .ir-platform,
+  .ir-deploy,
+  .ir-routes,
+  .rv-parts,
+  .rv-hard,
+  .rv-auto,
+  .rv-impl,
+  .rv-summary,
+  .rv-final
+) {
+  margin-top: 12px;
+}
+
+.chapter-comet-positioning .cp-stage-card,
+.chapter-comet-positioning .cp-context-lane,
+.chapter-five-stage-flow .fs-phase-card,
+.chapter-resume-entry .re-phase-node,
+.chapter-lightweight-state-machine .sm-phase-map div {
+  align-content: end;
+}
+
+.chapter-comet-positioning .cp-stage-card strong,
+.chapter-comet-positioning .cp-context-lane strong {
+  margin-top: 46px;
+}
+
+.chapter-comet-positioning .cp-flow-node {
+  min-height: 330px;
+  display: grid;
+  align-content: end;
+}
+
+.chapter-comet-positioning .cp-flow-node strong {
+  margin-top: 0;
+}
+
+.chapter-comet-positioning .cp-trigger-table {
+  margin-top: 26px;
+}
+
+.chapter-comet-positioning .cp-final-note {
+  bottom: 116px;
+}
+
+.chapter-five-stage-flow :is(.fs-phase-card strong, .fs-stop-card strong) {
+  margin-top: 56px;
+}
+
+.chapter-five-stage-flow .fs-loop-node strong {
+  margin-top: 52px;
+}
+
+.chapter-five-stage-flow .fs-loop-core {
+  bottom: 70px;
+}
+
+.chapter-resume-entry .re-window strong {
+  margin-top: 58px;
+}
+
+.chapter-resume-entry .re-spec-list {
+  margin-top: 44px;
+}
+
+.chapter-resume-entry .re-phase-node strong {
+  margin-top: 72px;
+}
+
+.chapter-resume-entry :is(.re-choice-note, .re-resume-result) {
+  bottom: 112px;
+}
+
+.chapter-lightweight-state-machine .sm-script-items {
+  margin-top: 34px;
+}
+
+.chapter-lightweight-state-machine .sm-archive-step strong {
+  margin-top: 74px;
+}
+
+.chapter-lightweight-state-machine .sm-dry-run {
+  bottom: 74px;
+}
+
+.scene-density-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  color: var(--text);
+}
+
+.scene-density-layer::before {
+  content: "";
+  position: absolute;
+  inset: 34px;
+  border: 1px solid var(--rule);
+  opacity: 0.48;
+}
+
+.scene-density-layer::after {
+  content: "";
+  position: absolute;
+  inset: 96px 128px;
+  background:
+    linear-gradient(90deg, transparent 0 49.5%, var(--rule) 49.5% 50.5%, transparent 50.5%),
+    linear-gradient(transparent 0 49.5%, var(--rule) 49.5% 50.5%, transparent 50.5%);
+  background-size: 220px 160px;
+  opacity: 0.2;
+  mask-image: linear-gradient(90deg, transparent, black 20%, black 80%, transparent);
+}
 
 /* ─────────────────────────────────────────────────────────────────────
  * 4. Type primitives — chapters compose with these instead of hard sizes.
@@ -223,6 +535,7 @@ body {
   font-variant-numeric: tabular-nums;
   line-height: 0.9;
   color: var(--text);
+  text-shadow: var(--hero-num-shadow, none);
 }
 
 /* ─────────────────────────────────────────────────────────────────────
