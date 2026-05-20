@@ -13,6 +13,7 @@ import { useAutoMode } from "./hooks/useAutoMode";
 import { useStepTransition } from "./hooks/useStepTransition";
 import { useStepper } from "./hooks/useStepper";
 import { CHAPTERS } from "./registry/chapters";
+import "./styles/typography.css";
 
 const SCENE_TOPICS: Record<string, string> = {
   "real-problem": "LONG TASK BREAKPOINTS",

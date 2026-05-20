@@ -12,7 +12,7 @@ const hardProblems = [
     tag: "nested skill",
   },
   {
-    title: "避免"看起来触发"",
+    title: '避免"看起来触发"',
     detail: "用阶段文件和守护脚本确认当前能力真的运行过。",
     tag: "observable state",
   },

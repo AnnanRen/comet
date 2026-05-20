@@ -247,8 +247,11 @@
   border: 1px solid var(--rule);
   border-radius: 18px;
   background: var(--surface);
-  font-family: var(--font-mono);
-  font-size: 20px;
+  font-family: var(--font-display-en);
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--text);
 }
@@ -288,7 +291,9 @@
   box-shadow: var(--card-shadow);
   color: var(--text-2);
   font-family: var(--font-mono);
-  font-size: 23px;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.2;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -712,6 +717,10 @@
   gap: 24px;
   padding: 46px;
   min-height: 430px;
+}
+
+.rp-laptop .rp-node {
+  text-transform: none;
 }
 
 .rp-token-panel {

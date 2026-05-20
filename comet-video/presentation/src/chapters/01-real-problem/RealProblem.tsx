@@ -149,7 +149,7 @@ export default function RealProblem({ step }: ChapterStepProps) {
       <SceneShell
         code="OPENSPEC / LIFECYCLE"
         kicker="WHAT IS STABLE"
-        title="Spec 生命周期已经清楚"
+        title="OpenSpec下的Spec生命周期"
       >
         <div className="rp-lifecycle" ref={sceneRef}>
           <RailLabel>OpenSpec</RailLabel>
@@ -178,7 +178,7 @@ export default function RealProblem({ step }: ChapterStepProps) {
       <SceneShell
         code="OPENSPEC / DESIGN GAP"
         kicker="WHERE IT GETS THIN"
-        title=""要做什么"不等于"怎么做""
+        title={'"要做什么"不等于"怎么做"'}
       >
         <div className="rp-gap-grid" ref={sceneRef}>
           <div className="rp-stack-card card" data-animate="slide-left">

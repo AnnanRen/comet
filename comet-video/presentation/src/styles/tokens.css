@@ -32,6 +32,10 @@
   --font-body:       "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
   --font-mono:       "IBM Plex Mono", "JetBrains Mono", "SF Mono", ui-monospace, monospace;
   --font-features:   "cv11", "ss01", "tnum", "kern";
+  --en-display-weight: 800;
+  --en-display-track:  0;
+  --en-label-track:    0.14em;
+  --en-code-track:     0;
 
   /* ─── motion: springy keynote ─── */
   --dur-base:       500ms;

@@ -251,16 +251,14 @@
   max-width: 100%;
   padding: 10px 0 14px;
   color: #f3d8c8 !important;
-  font-size: 13px;
-  line-height: 1.08;
+  font-size: 18px;
+  line-height: 1.02;
   text-align: left;
-  transform: scaleX(0.94);
-  transform-origin: center;
   text-shadow: 0 0 18px var(--accent-glow);
 }
 
 .ir-terminal-logo .ir-terminal-line:last-child {
-  margin-top: 4px;
+  margin-top: 6px;
   color: #e29b7c !important;
   font-size: 13px;
   text-align: center;

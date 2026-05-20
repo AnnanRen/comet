@@ -70,9 +70,9 @@
 }
 
 .cp-intro-proof {
-  min-height: 650px;
+  min-height: 720px;
   display: grid;
-  grid-template-columns: 420px 1fr;
+  grid-template-columns: 560px 1fr;
   gap: 32px;
   align-items: center;
   overflow: hidden;
@@ -80,7 +80,7 @@
 
 .cp-intro-proof img {
   width: 100%;
-  max-height: 610px;
+  max-height: 680px;
   object-fit: contain;
   border-radius: 18px;
   border: 1px solid var(--rule);
@@ -214,6 +214,7 @@
 .cp-bridge-card.is-how {
   grid-column: 3;
   grid-row: 1;
+  padding-left: 62px;
 }
 
 .cp-bridge-card strong,

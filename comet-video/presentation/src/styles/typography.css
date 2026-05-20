@@ -1,0 +1,98 @@
+/* English typography normalization.
+ * Display words use one editorial serif voice; labels, commands, paths,
+ * terminal text, and code use one mono voice.
+ */
+
+.scene :is(
+  .display-en,
+  .hero-num,
+  .rp-comet-core strong,
+  .rp-principle-card strong,
+  .rp-combine-node strong,
+  .rp-system-card strong,
+  .rp-life-item strong,
+  .rp-power-step strong,
+  .cp-big-word,
+  .cp-cap-card strong,
+  .cp-bridge-card strong,
+  .cp-bridge-core b,
+  .cp-relation-card strong,
+  .cp-context-core strong,
+  .cp-flow-node strong,
+  .cp-trigger-row strong,
+  .fs-phase-card strong,
+  .fs-owner-card strong,
+  .fs-stop-card strong,
+  .fs-loop-node strong,
+  .ir-route-node strong,
+  .rv-part-card strong,
+  .rv-hard-card strong,
+  .rv-summary-card strong,
+  .rv-final-word,
+  .rv-final-card strong
+) {
+  font-family: var(--font-display-en);
+  font-style: normal;
+  font-weight: var(--en-display-weight);
+  letter-spacing: var(--en-display-track);
+}
+
+.scene .rp-state-rail span {
+  font-family: var(--font-display-en);
+  font-style: normal;
+  font-weight: var(--en-display-weight);
+  letter-spacing: var(--en-display-track);
+}
+
+.scene :is(
+  .label-mono,
+  .kicker,
+  code,
+  pre,
+  .rp-code,
+  .cp-code,
+  .fs-code,
+  .re-code,
+  .sm-code,
+  .ir-code,
+  .rv-code,
+  .rp-comet-rule,
+  .rp-node,
+  .rp-md-lines code,
+  .rp-recovery-row strong,
+  .cp-repo-chip strong,
+  .cp-side-axis span,
+  .cp-bridge-card p,
+  .cp-output-rail span,
+  .cp-context-lane b,
+  .fs-phase-card em,
+  .fs-phase-card small,
+  .fs-tree-group strong,
+  .fs-tree-group code,
+  .ir-command-line,
+  .ir-terminal-body pre,
+  .ir-deploy-row strong,
+  .ir-platform-grid span,
+  .ir-shortcut-label strong,
+  .rv-commands b
+) {
+  font-family: var(--font-mono);
+  font-style: normal;
+  letter-spacing: var(--en-code-track);
+}
+
+.scene :is(
+  .label-mono,
+  .kicker,
+  .badge-mono,
+  .corner-mark,
+  .click-cue,
+  .masthead .issue
+) {
+  letter-spacing: var(--en-label-track);
+}
+
+.scene:not(.chapter-real-problem.step-0)::before,
+.scene:not(.chapter-real-problem.step-0)::after {
+  letter-spacing: var(--en-label-track);
+}

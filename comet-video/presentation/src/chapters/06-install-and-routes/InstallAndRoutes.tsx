@@ -23,13 +23,12 @@ const hotfixSignals = [
   { label: "verify", text: "修复必须经过验证收尾" },
 ];
 const repoUrl = "github.com/rpamis/comet";
-const cometLogo = String.raw`   ██████╗ ██████╗ ███╗   ███╗███████╗████████╗
-  ██╔════╝██╔═══██╗████╗ ████║██╔════╝╚══██╔══╝
-  ██║     ██║   ██║██╔████╔██║█████╗     ██║
-  ██║     ██║   ██║██║╚██╔╝██║██╔══╝     ██║
-  ╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗   ██║
-   ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝   ╚═╝
-            OpenSpec + Superpowers Workflow`;
+const cometLogo = String.raw`   ____ ___  __  __ _____ _____
+  / ___/ _ \|  \/  | ____|_   _|
+ | |  | | | | |\/| |  _|   | |
+ | |__| |_| | |  | | |___  | |
+  \____\___/|_|  |_|_____| |_|
+       OpenSpec + Superpowers Workflow`;
 const initOutput = String.raw`comet init
 
   Setting up Comet in D:\Project\comet

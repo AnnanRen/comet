@@ -123,32 +123,6 @@ function PhaseCard({
   );
 }
 
-function FocusPhase({ idx }: { idx: number }) {
-  const phase = phases[idx]!;
-  return (
-    <div className="fs-focus-layout">
-      <div className="fs-focus-left">
-        <PhaseCard phase={phase} index={idx} active />
-      </div>
-      <div className="fs-focus-right">
-        <div className="fs-owner-card card">
-          <span className="label-mono">owner</span>
-          <strong>{phase.owner}</strong>
-          <p>{phase.note}</p>
-        </div>
-        <div className="fs-artifacts">
-          {phase.outputs.map((item) => (
-            <div className="fs-artifact" key={item}>
-              <span />
-              <b>{item}</b>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function FiveStageFlow({ step }: ChapterStepProps) {
   const sceneRef = useRef<HTMLDivElement>(null);
   useSceneAnimations(sceneRef);
@@ -160,12 +134,18 @@ export default function FiveStageFlow({ step }: ChapterStepProps) {
         kicker="WORKFLOW MAP"
         title="完整流程拆成五个阶段"
       >
-        <div className="fs-map" ref={sceneRef}>
-          {phases.map((phase, idx) => (
-            <div key={phase.id} data-animate="flip-in">
-              <PhaseCard phase={phase} index={idx} compact />
-            </div>
-          ))}
+        <div className="fs-map-shell" ref={sceneRef}>
+          <div className="fs-map">
+            {phases.map((phase, idx) => (
+              <div key={phase.id} data-animate="flip-in">
+                <PhaseCard phase={phase} index={idx} compact />
+              </div>
+            ))}
+          </div>
+          <div className="fs-flow-caption" data-animate="blur-in">
+            <span className="label-mono">auto trigger</span>
+            <strong>5阶段流转自动触发</strong>
+          </div>
         </div>
       </SceneShell>
     );

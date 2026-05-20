@@ -26,8 +26,14 @@
   text-align: right;
 }
 
-.fs-map {
+.fs-map-shell {
   flex: 1;
+  display: grid;
+  align-content: center;
+  gap: 34px;
+}
+
+.fs-map {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
@@ -80,6 +86,82 @@
   font-style: normal;
   letter-spacing: 0.04em;
   color: var(--accent);
+}
+
+.fs-map .fs-phase-card {
+  animation: fs-phase-auto-highlight 6.2s var(--ease-soft) infinite;
+}
+
+.fs-map > div:nth-child(2) .fs-phase-card {
+  animation-delay: 0.72s;
+}
+
+.fs-map > div:nth-child(3) .fs-phase-card {
+  animation-delay: 1.44s;
+}
+
+.fs-map > div:nth-child(4) .fs-phase-card {
+  animation-delay: 2.16s;
+}
+
+.fs-map > div:nth-child(5) .fs-phase-card {
+  animation-delay: 2.88s;
+}
+
+.fs-map .fs-phase-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      110deg,
+      transparent 0%,
+      color-mix(in srgb, var(--accent) 16%, transparent) 42%,
+      transparent 72%
+    );
+  opacity: 0;
+  transform: translateX(-34%);
+  animation: fs-phase-sheen 6.2s var(--ease-soft) infinite;
+}
+
+.fs-map > div:nth-child(2) .fs-phase-card::before {
+  animation-delay: 0.72s;
+}
+
+.fs-map > div:nth-child(3) .fs-phase-card::before {
+  animation-delay: 1.44s;
+}
+
+.fs-map > div:nth-child(4) .fs-phase-card::before {
+  animation-delay: 2.16s;
+}
+
+.fs-map > div:nth-child(5) .fs-phase-card::before {
+  animation-delay: 2.88s;
+}
+
+.fs-map .fs-phase-card .label-mono,
+.fs-map .fs-phase-card strong,
+.fs-map .fs-phase-card em {
+  position: relative;
+  z-index: 1;
+}
+
+.fs-flow-caption {
+  justify-self: center;
+  min-width: 520px;
+  padding: 20px 34px;
+  border-top: 4px solid var(--accent);
+  text-align: center;
+  animation: fs-caption-pulse 6.2s var(--ease-soft) infinite;
+}
+
+.fs-flow-caption strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 32px;
+  line-height: 1.1;
+  color: var(--text);
 }
 
 .fs-phase-card small {
@@ -373,5 +455,38 @@
     opacity: 1;
     transform: translateX(0);
     clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes fs-phase-auto-highlight {
+  0%, 7%, 31%, 100% {
+    border-color: var(--rule);
+    box-shadow: var(--card-shadow);
+    transform: translateY(0);
+  }
+  10%, 24% {
+    border-color: var(--accent);
+    box-shadow: 0 20px 70px rgba(204, 101, 66, 0.22);
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fs-phase-sheen {
+  0%, 7%, 31%, 100% {
+    opacity: 0;
+    transform: translateX(-34%);
+  }
+  10%, 24% {
+    opacity: 1;
+    transform: translateX(34%);
+  }
+}
+
+@keyframes fs-caption-pulse {
+  0%, 7%, 31%, 100% {
+    opacity: 0.62;
+  }
+  10%, 24% {
+    opacity: 1;
   }
 }
