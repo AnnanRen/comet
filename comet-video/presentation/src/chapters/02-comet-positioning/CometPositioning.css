@@ -148,13 +148,51 @@
 }
 
 .cp-side-axis span {
+  position: relative;
   min-height: 112px;
   display: grid;
   align-items: center;
-  font-family: var(--font-mono);
-  text-transform: uppercase;
+  padding: 20px 26px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-card);
+  background: var(--surface-2);
+  font-family: var(--font-display-cn);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--text);
   box-shadow: var(--card-shadow);
+  overflow: visible;
+}
+
+.cp-side-axis span::before {
+  content: "“";
+  position: absolute;
+  right: 18px;
+  top: 6px;
+  font-family: var(--font-display-en);
+  font-size: 52px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.22;
+}
+
+.cp-side-axis span::after {
+  content: "";
+  position: absolute;
+  left: 28px;
+  bottom: -12px;
+  width: 24px;
+  height: 24px;
+  transform: rotate(45deg);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: inherit;
+}
+
+.cp-side-axis span:nth-child(2n) {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--rule));
 }
 
 .cp-method-ladder {
@@ -168,11 +206,11 @@
   min-height: 420px;
   padding: 26px 18px;
   border: 1px solid var(--rule);
-  border-radius: 28px;
+  border-radius: var(--r-card);
   background: var(--surface-2);
   box-shadow: var(--card-shadow);
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto auto;
   align-items: end;
 }
 
@@ -183,9 +221,19 @@
 }
 
 .cp-method-step b {
-  font-size: 26px;
+  font-size: 24px;
   line-height: 1.1;
   color: var(--text);
+  white-space: nowrap;
+}
+
+.cp-method-step small {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-display-cn);
+  font-size: 21px;
+  line-height: 1.15;
+  color: var(--text-2);
 }
 
 .cp-bridge {

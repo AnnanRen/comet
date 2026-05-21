@@ -289,7 +289,7 @@ export default function InstallAndRoutes({ step }: ChapterStepProps) {
   }
 
   return (
-    <SceneShell code="QUICK COMMANDS / 02" kicker="SHORTCUT COMMANDS" title="第二个快速命令：tweak">
+    <SceneShell code="QUICK COMMANDS / 02" kicker="SHORTCUT COMMANDS" title="第二个快速命令：comet-tweak">
       <div className="ir-tweak" ref={sceneRef}>
         <div className="ir-tweak-list card" data-animate="slide-left">
           <span className="label-mono">/comet-tweak</span>

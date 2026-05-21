@@ -298,6 +298,15 @@
   color: var(--text);
 }
 
+.fs-stop-card small {
+  display: block;
+  margin-top: 18px;
+  font-family: var(--font-display-cn);
+  font-size: 30px;
+  line-height: 1.18;
+  color: var(--text-2);
+}
+
 .fs-stop-card.is-right strong {
   color: var(--accent);
   font-size: 64px;
@@ -315,23 +324,23 @@
 .fs-structure {
   flex: 1;
   display: grid;
-  grid-template-columns: 1.25fr 0.75fr;
-  gap: 42px;
+  grid-template-columns: 1.38fr 0.62fr;
+  gap: 34px;
   align-items: center;
 }
 
 .fs-tree-card {
   min-height: 620px;
-  padding: 38px 44px;
+  padding: 34px 38px;
   display: grid;
   align-content: center;
-  gap: 20px;
+  gap: 16px;
   overflow: hidden;
 }
 
 .fs-tree-group {
   position: relative;
-  padding: 18px 0 18px 34px;
+  padding: 14px 0 14px 30px;
   border-left: 3px solid var(--accent);
   animation: fs-tree-expand 780ms var(--ease-expo) both;
 }
@@ -346,28 +355,61 @@
 
 .fs-tree-group strong,
 .fs-tree-group code {
-  display: block;
   font-family: var(--font-mono);
   letter-spacing: 0;
 }
 
 .fs-tree-group strong {
+  display: block;
   font-size: 25px;
   color: var(--accent);
 }
 
+.fs-tree-group p {
+  margin: 4px 0 10px;
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--text-mute);
+}
+
 .fs-tree-group code {
+  display: grid;
+  grid-template-columns: 26px minmax(286px, 0.92fr) minmax(230px, 1fr);
+  gap: 10px;
+  align-items: baseline;
   margin-top: 10px;
-  padding-left: 24px;
-  font-size: 17px;
+  font-size: 14.5px;
   line-height: 1.25;
   color: var(--text-2);
   animation: comet-type 760ms var(--ease-quart) both;
 }
 
 .fs-tree-group code::before {
-  content: "└─ ";
+  content: "├─";
   color: var(--text-mute);
+}
+
+.fs-tree-group code.is-last::before {
+  content: "└─";
+}
+
+.fs-tree-group code span {
+  min-width: 0;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.fs-tree-group code em {
+  min-width: 0;
+  font-family: var(--font-display-cn);
+  font-size: 14px;
+  font-style: normal;
+  color: var(--text-mute);
+}
+
+.fs-tree-group code em::before {
+  content: "# ";
+  color: var(--accent);
 }
 
 .fs-structure-notes {

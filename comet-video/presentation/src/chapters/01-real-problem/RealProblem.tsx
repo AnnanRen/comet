@@ -30,8 +30,19 @@ const lifecycle = [
     meta: "closed loop",
   },
 ];
-const gaps = ["proposal", "tasks", "design gap", "agent judgment"];
-const powers = ["brainstorming", "design doc", "plan", "TDD", "verify"];
+const gaps = [
+  { label: "proposal", desc: "变更意图" },
+  { label: "tasks", desc: "待办清单" },
+  { label: "design gap", desc: "方案缺口" },
+  { label: "agent judgment", desc: "工程判断" },
+];
+const powers = [
+  { label: "brainstorming", desc: "先澄清问题" },
+  { label: "design doc", desc: "写清方案边界" },
+  { label: "plan", desc: "拆成可执行步骤" },
+  { label: "TDD", desc: "用测试驱动实现" },
+  { label: "verify", desc: "验证并收尾" },
+];
 const markdown = ["- [x] task done", "- [ ] state?", "phase: unknown"];
 const restore = ["read docs", "scan code", "infer phase"];
 const recoveryTrace = [
@@ -46,10 +57,12 @@ function RailLabel({ children }: { children: string }) {
 
 function BlueprintNode({
   label,
+  desc,
   active = false,
   muted = false,
 }: {
   label: string;
+  desc?: string;
   active?: boolean;
   muted?: boolean;
 }) {
@@ -62,7 +75,10 @@ function BlueprintNode({
       ].join(" ")}
     >
       <span className="rp-node-dot" />
-      <span>{label}</span>
+      <span>
+        <b>{label}</b>
+        {desc && <small>{desc}</small>}
+      </span>
     </div>
   );
 }
@@ -184,7 +200,7 @@ export default function RealProblem({ step }: ChapterStepProps) {
           <div className="rp-stack-card card" data-animate="slide-left">
             <RailLabel>Artifacts</RailLabel>
             {gaps.slice(0, 2).map((item) => (
-              <BlueprintNode key={item} label={item} active />
+              <BlueprintNode key={item.label} label={item.label} desc={item.desc} active />
             ))}
           </div>
           <div className="rp-gap-arrow" data-animate="pop">
@@ -194,7 +210,7 @@ export default function RealProblem({ step }: ChapterStepProps) {
           <div className="rp-stack-card card is-warning" data-animate="slide-right">
             <RailLabel>Engineering detail</RailLabel>
             {gaps.slice(2).map((item) => (
-              <BlueprintNode key={item} label={item} active />
+              <BlueprintNode key={item.label} label={item.label} desc={item.desc} active />
             ))}
           </div>
         </div>
@@ -214,9 +230,10 @@ export default function RealProblem({ step }: ChapterStepProps) {
       >
         <div className="rp-powers" ref={sceneRef}>
           {powers.map((item, idx) => (
-            <div className="rp-power-step" key={item} data-animate="rise">
+            <div className="rp-power-step" key={item.label} data-animate="rise">
               <div className="rp-power-num hero-num">{idx + 1}</div>
-              <strong>{item}</strong>
+              <strong>{item.label}</strong>
+              <small>{item.desc}</small>
               <div className="rp-power-bar" />
             </div>
           ))}

@@ -5,9 +5,9 @@ import { useSceneAnimations } from "../../hooks/useSceneAnimations";
 import "./ResumeEntry.css";
 
 const specs = [
-  { name: "add-comet-state", phase: "build", active: true },
-  { name: "fix-archive-sync", phase: "verify", active: false },
-  { name: "docs-skill-copy", phase: "design", active: false },
+  { name: "add-comet-state", phase: "build", active: true, title: "实现状态机能力" },
+  { name: "fix-archive-sync", phase: "verify", active: false, title: "验证归档同步" },
+  { name: "docs-skill-copy", phase: "design", active: false, title: "补齐设计材料" },
 ];
 
 const phases = ["open", "design", "build", "verify", "archive"];
@@ -41,16 +41,21 @@ function SceneShell({
 function TerminalLine({
   prompt,
   value,
+  desc,
   active = false,
 }: {
   prompt: string;
   value: string;
+  desc?: string;
   active?: boolean;
 }) {
   return (
     <div className={["re-terminal-line", active ? "is-active" : ""].join(" ")}>
       <span>{prompt}</span>
-      <b>{value}</b>
+      <div>
+        <b>{value}</b>
+        {desc && <small>{desc}</small>}
+      </div>
     </div>
   );
 }
@@ -68,10 +73,10 @@ export default function ResumeEntry({ step }: ChapterStepProps) {
       >
         <div className="re-command-layout" ref={sceneRef}>
           <div className="re-terminal card" data-animate="slide-left">
-            <TerminalLine prompt="$" value="/comet" active />
-            <TerminalLine prompt=">" value="detect active spec state" />
-            <TerminalLine prompt=">" value="read workflow phase" />
-            <TerminalLine prompt=">" value="route next action" />
+            <TerminalLine prompt="$" value="/comet" desc="主入口：先识别现场，再决定下一步" active />
+            <TerminalLine prompt=">" value="detect active spec state" desc="检测当前是否存在活跃 Spec" />
+            <TerminalLine prompt=">" value="read workflow phase" desc="读取 Comet 记录的工作流阶段" />
+            <TerminalLine prompt=">" value="route next action" desc="把请求分发到正确阶段继续执行" />
           </div>
           <div className="re-state-card card" data-animate="slide-right">
             <span className="label-mono">detector</span>
@@ -114,20 +119,28 @@ export default function ResumeEntry({ step }: ChapterStepProps) {
         kicker="MULTIPLE ACTIVE SPECS"
         title="多个活跃 Spec 时，先列出来"
       >
-        <div className="re-spec-list card" ref={sceneRef}>
-          {specs.map((spec, idx) => (
-            <div
-              className={["re-spec-row", spec.active ? "is-active" : ""].join(
-                " ",
-              )}
-              key={spec.name}
-              data-animate="flip-in"
-            >
-              <span className="label-mono">0{idx + 1}</span>
-              <strong>{spec.name}</strong>
-              <em>{spec.phase}</em>
-            </div>
-          ))}
+        <div className="re-spec-board" ref={sceneRef}>
+          <div className="re-spec-board-label label-mono" data-animate="blur-in">
+            detected changes
+          </div>
+          <div className="re-spec-list">
+            {specs.map((spec, idx) => (
+              <div
+                className={["re-spec-row", "card", spec.active ? "is-active" : ""].join(
+                  " ",
+                )}
+                key={spec.name}
+                data-animate="flip-in"
+              >
+                <span className="label-mono">0{idx + 1}</span>
+                <div>
+                  <strong>{spec.title}</strong>
+                  <small>{spec.name}</small>
+                </div>
+                <em>{spec.phase}</em>
+              </div>
+            ))}
+          </div>
         </div>
         <div className="re-choice-note" data-animate="blur-in">
           <span className="label-mono">selection</span>

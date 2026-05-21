@@ -2,13 +2,13 @@
   {
     "chapter": "real-problem",
     "step": 1,
-    "text": "OpenSpec和Superpowers是当下做Spec Coding非常出名的两个项目，在日常使用过程中我们一定有组合Skill的需求，但问题是两套Skill的技能命令是分散的，没办法自动触发，并且有的部分Skill我可能不是那么想用。比如我更喜欢用Superpowers的TDD执行，而不是OpenSpec的apply，更需要用OpenSpec的archive能力归档Spec，而不是Superpowers的一次性Spec。怎么组合市面上的高Star项目，让他们自动触发，互相取长补短，怎么让整个状态扭转更可靠。这些看起来能够实现的点，在实际的开发过程中，依然还有很多细节考量。Comet就是组合这两者产生的项目，想要做的事很直接：把 OpenSpec 管需求的能力，和 Superpowers 管实现的能力，接到同一条流程里。它不改这两套东西，只做组合调度。",
+    "text": "OpenSpec和Superpowers是当下做Spec Coding非常出名的两个项目，在日常使用过程中我们一定有组合Skill的需求，但问题是两套Skill的技能命令是分散的，没办法自动触发，并且有的部分Skill我可能不是那么想用。比如我更喜欢用Superpowers的TDD执行，而不是OpenSpec的apply，更需要用OpenSpec的archive能力归档Spec，而不是Superpowers的一次性Spec。怎么组合市面上的高Star项目，让他们自动触发，互相取长补短，怎么让整个状态扭转更可靠。这些看起来能够实现的点，在实际的开发过程中，依然还有很多细节考量，两个Skill都会产出Spec文档，这部分需要自然的融合在一起。Comet就是组合这两者产生的项目，想要做的事很直接：把 OpenSpec 管需求的能力，和 Superpowers 管实现的能力，接到同一条流程里。它不改这两套东西，只做组合调度。",
     "audio": "real-problem/1.mp3"
   },
   {
     "chapter": "real-problem",
     "step": 2,
-    "text": "先看 OpenSpec 这边。它很擅长管理 Spec 的生命周期。当前需求放在哪里，变更材料放在哪里，最后怎么归档，这条线很清楚。所以 WHAT，也就是要改什么，OpenSpec 能够很好的列出大纲。",
+    "text": "先看 OpenSpec 这边。它很擅长管理 Spec 的生命周期。当前需求放在哪里，变更材料放在哪里，最后怎么归档，这条线很清楚。所以这对应于WHAT部分，也就是要改什么，OpenSpec 能够很好的列出大纲。",
     "audio": "real-problem/2.mp3"
   },
   {
@@ -20,7 +20,7 @@
   {
     "chapter": "real-problem",
     "step": 4,
-    "text": "Superpowers 补的是 HOW。它会先澄清需求，再做深度设计，然后写计划，按 TDD 推进，最后验证和收尾，中间会不断的和用户交互沟通细节。也就是说，它把真正实现时需要的链路拉细了。",
+    "text": "Superpowers 补的是HOW，怎么去做。它会先澄清需求，再做深度设计，然后写计划，按 TDD 推进，最后验证和收尾，中间会不断的和用户交互沟通细节。也就是说，它把真正实现时需要的链路拉细了。",
     "audio": "real-problem/4.mp3"
   },
   {
@@ -32,13 +32,13 @@
   {
     "chapter": "real-problem",
     "step": 6,
-    "text": "所以断点恢复才是核心问题。下一次会话开始，Agent 先读文档，再扫代码，再推断阶段。代码还没写，Token 已经花在恢复现场上了。Comet通过一个轻量的状态机机制来实现断点恢复，要省掉的，就是这段重新找路的成本。",
+    "text": "所以断点恢复才是核心问题。下一次会话开始，通常的断点恢复，Agent会先读文档，再扫代码，再推断阶段。代码还没写，Token已经花在恢复现场上了。Comet通过一个轻量的状态机机制来实现断点恢复，要省掉的，就是这段重新找路的成本。",
     "audio": "real-problem/6.mp3"
   },
   {
     "chapter": "comet-positioning",
     "step": 1,
-    "text": "Comet的定位不是再造一套方法论。它更像一条稳定轨道。把 OpenSpec 和 Superpowers 放进同一个项目流程里，让两边各做自己擅长的事。",
+    "text": "Comet的定位不是再造一套方法论。它更像一条稳定轨道。把 OpenSpec 和 Superpowers 放进同一个项目流程里，让两边各做自己擅长的事，并在执行过程中对齐两边产出的文档。",
     "audio": "comet-positioning/1.mp3"
   },
   {
@@ -74,7 +74,7 @@
   {
     "chapter": "comet-positioning",
     "step": 7,
-    "text": "最后落到触发规则。open 阶段找 OpenSpec，design 和 build 找 Superpowers，verify 阶段两边一起收口。正确阶段，触发正确 Skill，这就是 Comet 的核心定位。",
+    "text": "最后落到触发规则。open 阶段找 OpenSpec，design 和 build 找 Superpowers，verify 阶段两边一起收口。在对应的阶段，真正的触发正确的Skill，而不是让AI产生触发了Skill，但实际上是AI自己写的幻觉。",
     "audio": "comet-positioning/7.mp3"
   },
   {
@@ -98,7 +98,7 @@
   {
     "chapter": "five-stage-flow",
     "step": 4,
-    "text": "第三段是 comet-build。这里进入工程实现。计划、TDD、subagent，都在这一段接上。能按计划推进，就不要临时乱跑。",
+    "text": "第三段是 comet-build。这里进入工程实现。Plan、TDD、SubAgent，都在这一段接上。能按计划推进，就不要临时乱跑。",
     "audio": "five-stage-flow/4.mp3"
   },
   {
@@ -110,7 +110,7 @@
   {
     "chapter": "five-stage-flow",
     "step": 6,
-    "text": "第五段是 comet-archive。所有的需求变更同步回 main spec，change 进入 archive，相关文档也补上状态，这时候OpenSpec和Superpowers产出的文档会进行双向关联。到这里，知识库才不会留下半截流程。",
+    "text": "第五段是 comet-archive。所有的需求变更同步回 main spec，change 进入 archive，状态机补充文档核心状态，这时候OpenSpec和Superpowers产出的文档会进行双向关联。到这里，产出的Spec关联文档才不会留下半截流程。",
     "audio": "five-stage-flow/6.mp3"
   },
   {
@@ -122,19 +122,19 @@
   {
     "chapter": "five-stage-flow",
     "step": 8,
-    "text": "初始化之后，项目会被分成三层。平台 Skill 放一层，OpenSpec 的 change 和状态放一层，Superpowers 的设计文档和计划放一层。WHAT、HOW 和工作流状态，各回各的位置。",
+    "text": "使用Comet初始化之后，项目会被分成三层。平台 Skill 放一层，包含了Comet的核心脚本，OpenSpec 的 change 和状态放一层，Superpowers 的设计文档和计划放一层。WHAT、HOW 和工作流状态，各回各的位置。",
     "audio": "five-stage-flow/8.mp3"
   },
   {
     "chapter": "resume-entry",
     "step": 1,
-    "text": "/comet 不是一个简单菜单。它先检测当前 Spec 状态，读取 workflow phase，然后决定下一步该进哪个阶段。入口先判断现场，再路由动作。",
+    "text": "/comet 是Skill的核心入口，用户在使用的时候不管当前Spec状态如何，都可以通过这个入口进行工作。它会先检测当前 Spec 状态，读取 workflow phase，然后决定下一步该进哪个阶段。入口先判断现场，再路由动作。",
     "audio": "resume-entry/1.mp3"
   },
   {
     "chapter": "resume-entry",
     "step": 2,
-    "text": "长任务做到一半，工具关掉了。回来之后，不应该重新讲一遍背景。直接输入 /comet 继续，它会从当前 Spec 状态恢复现场，不再需要重新探索项目。",
+    "text": "当我们面对长任务做到一半，工具关掉了的情况时。回来之后，不应该重新讲一遍背景。而是直接输入 /comet 继续，它会从当前 Spec 状态恢复现场，不再需要重新探索项目。",
     "audio": "resume-entry/2.mp3"
   },
   {
@@ -146,7 +146,7 @@
   {
     "chapter": "resume-entry",
     "step": 4,
-    "text": "选定之后，它会定位当前阶段。比如现在是 build，就从 build 继续，而不是重新扫描项目。长任务真正需要的，就是这种明确的继续位置。",
+    "text": "选定之后，它会定位当前阶段。比如现在是 build，就从 build 继续，而不是重新扫描项目。长程任务真正需要的，就是这种明确的继续位置。这种设计能够极大的减轻你的使用认知负担，我们拿到Skill不再需要记多个命令，而是直接Comet 继续就好。Comet 会帮你把状态记住，帮你把流程走下去。",
     "audio": "resume-entry/4.mp3"
   },
   {
@@ -170,7 +170,7 @@
   {
     "chapter": "lightweight-state-machine",
     "step": 4,
-    "text": "验证和归档状态也写进去。verify result、verified at、archived，这些字段不复杂，但足够判断下一步是不是可以继续。",
+    "text": "验证和归档状态也写需要进去。verify result、verified at、archived，这些字段不复杂，但足够判断下一步是不是可以继续。",
     "audio": "lightweight-state-machine/4.mp3"
   },
   {
@@ -200,7 +200,7 @@
   {
     "chapter": "install-and-routes",
     "step": 1,
-    "text": "安装过程如图所示，从npm安装之后，进入你的项目，执行 comet init。用户要先进入工作流本身，不应该卡在复杂安装里。",
+    "text": "安装过程如图所示，从npm安装之后，进入你的项目，执行 comet init。comet采用交互式命令集成安装步骤，非常简单。",
     "audio": "install-and-routes/1.mp3"
   },
   {
@@ -212,7 +212,7 @@
   {
     "chapter": "install-and-routes",
     "step": 3,
-    "text": "接下来依赖自动就位。OpenSpec skill、Superpowers skill、Comet skill 会部署到选定平台。specs 和 plans 这些工作目录，也会一起创建好。",
+    "text": "选择依赖后，相关的Skill就会自动就位。OpenSpec skill、Superpowers skill、Comet skill 会部署到选定平台。specs 和 plans 这些工作目录，也会一起创建好。",
     "audio": "install-and-routes/3.mp3"
   },
   {
@@ -266,13 +266,13 @@
   {
     "chapter": "reference-value",
     "step": 6,
-    "text": "大家从两条命令开始。安装 comet，然后在项目里执行 comet init。初始化之后，就可以用 /comet 加你的想法，进入完整流程。",
+    "text": "从两条命令开始，安装 comet，然后在项目里执行 comet init。初始化之后，就可以用 /comet 加你的想法，进入完整流程。",
     "audio": "reference-value/6.mp3"
   },
   {
     "chapter": "reference-value",
     "step": 7,
-    "text": "最后我想说的是，Comet 留下的不是某一个命令。它证明的是一套组合范式：嵌套 Skill 要真正触发，多阶段流程要能自动流转，状态机和守护脚本要让这套组合在真实项目里可靠落地。",
+    "text": "最后我想说的是，Comet 留下的不是某一个命令。它证明的是一套组合范式：嵌套 Skill 要真正触发，多阶段流程要能自动流转，状态机和守护脚本要让这套组合在真实项目里可靠落地。希望大家能从这个项目里学习到好用的知识，一起创造更适合自己的Skill~",
     "audio": "reference-value/7.mp3"
   }
 ]

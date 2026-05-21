@@ -298,6 +298,24 @@
   text-transform: uppercase;
 }
 
+.rp-node span:last-child {
+  display: grid;
+  gap: 6px;
+}
+
+.rp-node b {
+  font-weight: 800;
+}
+
+.rp-node small {
+  font-family: var(--font-display-cn);
+  font-size: 20px;
+  line-height: 1.18;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-2);
+}
+
 .rp-node.is-active {
   color: var(--text);
   border-color: var(--accent);
@@ -616,6 +634,14 @@
   color: var(--text);
   letter-spacing: 0;
   text-transform: uppercase;
+}
+
+.rp-power-step small {
+  display: block;
+  margin-top: -14px;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--text-2);
 }
 
 .rp-power-bar {

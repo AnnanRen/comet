@@ -46,18 +46,44 @@ const projectTree = [
   {
     label: "platform skills",
     root: ".claude/skills/",
-    files: ["comet/SKILL.md", "comet/scripts/comet-guard.sh", "openspec-*/SKILL.md", "brainstorming/SKILL.md"],
+    note: "平台技能目录（Comet + OpenSpec + Superpowers）",
+    files: [
+      { path: "comet/SKILL.md", note: "Comet 主技能入口" },
+      { path: "comet/scripts/comet-guard.sh", note: "阶段转换守护，自动更新状态" },
+      { path: "comet/scripts/comet-archive.sh", note: "一键归档自动化" },
+      { path: "comet/scripts/comet-yaml-validate.sh", note: "模式校验器" },
+      { path: "comet/scripts/comet-state.sh", note: "统一状态管理" },
+      { path: "openspec-*/SKILL.md", note: "OpenSpec 生命周期管理" },
+      { path: "brainstorming/SKILL.md", note: "Superpowers 深度设计能力" },
+    ],
   },
   {
     label: "OpenSpec — WHAT",
     root: "openspec/changes/<name>/",
-    files: [".openspec.yaml", ".comet.yaml", "proposal.md", "specs/<capability>/spec.md"],
+    note: "OpenSpec 管需求世界",
+    files: [
+      { path: ".openspec.yaml", note: "OpenSpec 状态" },
+      { path: ".comet.yaml", note: "Comet 工作流状态（解耦）" },
+      { path: "proposal.md", note: "变更提案" },
+      { path: "design.md", note: "设计说明" },
+      { path: "specs/<capability>/spec.md", note: "能力规格 delta spec" },
+      { path: "tasks.md", note: "任务清单，完成后勾选" },
+    ],
   },
   {
     label: "Superpowers — HOW",
     root: "docs/superpowers/",
-    files: ["specs/YYYY-MM-DD-topic-design.md", "plans/YYYY-MM-DD-feature.md"],
+    note: "Superpowers 管实现方法",
+    files: [
+      { path: "specs/YYYY-MM-DD-topic-design.md", note: "设计文档" },
+      { path: "plans/YYYY-MM-DD-feature.md", note: "实现计划" },
+    ],
   },
+];
+const finishChecks = [
+  { label: "not enough", title: "code done", desc: "代码写完" },
+  { label: "not enough", title: "tasks checked", desc: "任务打勾" },
+  { label: "required", title: "state aligned", desc: "状态对齐" },
 ];
 
 function SceneShell({
@@ -192,18 +218,17 @@ export default function FiveStageFlow({ step }: ChapterStepProps) {
         title="需求不是代码写完就结束"
       >
         <div className="fs-not-done" ref={sceneRef}>
-          <div className="fs-stop-card card" data-animate="slide-left">
-            <span className="label-mono">not enough</span>
-            <strong>code done</strong>
-          </div>
-          <div className="fs-stop-card card" data-animate="slide-left">
-            <span className="label-mono">not enough</span>
-            <strong>tasks checked</strong>
-          </div>
-          <div className="fs-stop-card card is-right" data-animate="pop">
-            <span className="label-mono">required</span>
-            <strong>state aligned</strong>
-          </div>
+          {finishChecks.map((item, idx) => (
+            <div
+              className={`fs-stop-card card ${idx === 2 ? "is-right" : ""}`}
+              data-animate={idx === 2 ? "pop" : "slide-left"}
+              key={item.title}
+            >
+              <span className="label-mono">{item.label}</span>
+              <strong>{item.title}</strong>
+              <small>{item.desc}</small>
+            </div>
+          ))}
         </div>
       </SceneShell>
     );
@@ -221,8 +246,12 @@ export default function FiveStageFlow({ step }: ChapterStepProps) {
           {projectTree.map((group) => (
             <div className="fs-tree-group" key={group.root} data-animate="reveal">
               <strong>{group.root}</strong>
-              {group.files.map((file) => (
-                <code key={file}>{file}</code>
+              <p>{group.note}</p>
+              {group.files.map((file, fileIdx) => (
+                <code className={fileIdx === group.files.length - 1 ? "is-last" : ""} key={file.path}>
+                  <span>{file.path}</span>
+                  <em>{file.note}</em>
+                </code>
               ))}
             </div>
           ))}

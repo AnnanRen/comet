@@ -5,7 +5,13 @@ import { useSceneAnimations } from "../../hooks/useSceneAnimations";
 import "./CometPositioning.css";
 
 const whatItems = ["需求是什么", "提案怎么写", "Spec 怎么变更", "最后怎么归档"];
-const howItems = ["头脑风暴", "技术设计", "实现计划", "执行", "验证收尾"];
+const howItems = [
+  { label: "brainstorming", desc: "头脑风暴" },
+  { label: "design doc", desc: "技术设计" },
+  { label: "plan", desc: "实现计划" },
+  { label: "execute", desc: "执行" },
+  { label: "verify", desc: "验证收尾" },
+];
 const contextItems = [
   { lane: "WHAT", items: ["proposal", "spec lifecycle", "archive state"] },
   { lane: "HOW", items: ["brainstorming", "design doc", "execution plan"] },
@@ -124,12 +130,13 @@ export default function CometPositioning({ step }: ChapterStepProps) {
         title="Superpowers 管执行方法"
       >
         <div className="cp-capability-layout is-how" ref={sceneRef}>
-          <CapabilityCard label="HOW" title="Superpowers" items={howItems} />
+          <CapabilityCard label="HOW" title="Superpowers" items={howItems.map((item) => item.desc)} />
           <div className="cp-method-ladder">
             {howItems.map((item, idx) => (
-              <div key={item} className="cp-method-step" data-animate="slide-right">
+              <div key={item.label} className="cp-method-step" data-animate="slide-right">
                 <span className="hero-num">{idx + 1}</span>
-                <b>{item}</b>
+                <b>{item.label}</b>
+                <small>{item.desc}</small>
               </div>
             ))}
           </div>
